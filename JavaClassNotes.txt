@@ -1,0 +1,1355 @@
+What is programming ?
+	Set of instructions to be executed by computer/machine which might be based on some conditions and criteria.
+	
+
+Some important Terminologies associated with any programming language :-
+
+1. Identifier :-
+	A program in any programming lang can have multiple components/items in it.(Like Java has class, variable , methods, etc.).
+	Name of any such component of the program is called an identifier.
+	Eg. --> class name (String, Object),
+			method name (main() method , print() method )
+			variable name (int number = 0;  here number is an identifier)
+			or a label name.
+
+Generally as a programmer we decide which identifier should be given to a variable or class or method.
+But there are some rules and conventions to decide a name.
+Lets look at common rules for all types of variables, we will see conventions when we talk about specific type.
+	i. The allowed characters to have in Java identifier are :- 
+		a to z , A to Z and 0 to 9, and two special characters("_" and "$").
+	ii. an identifier should never start with digit.
+	iii. Not a rule but recommendation to have meaningful name.
+	iv. Should not use Java reserved keywords and literals for identifier.
+
+primeNumber  -- any variable or any method
+BankAccount  -- Class or Interface -- 
+
+
+------------------------------------------------------------------------------------------------	
+	
+Java Reserved Words :-
+A. DataTypes - (boolean,byte,short,char,int,long,float, double)
+B. Special return type of method - ( void )
+C. Flow Controls - (if,else,switch,case,default,for,do,while,break,continue,return, goto(not used))
+D. Access/Type Modifiers - (public,private,protected,static,final,abstract,synchronized,native,strictfp(1.2 version), transient, volatile)
+E. Exception handling - (try,catch,finally,throw,throws,assert(1.4 version) )
+F. class/interface related -  ( class,package,import,extends,implements,interface)
+G. Object related - (new,instanceof, super, this)
+H. Literals -   true, false  -- used for boolean data type values, 
+			    null -  default value for object reference.  "   "  ""  -- 
+What are  Literals :- Any constant value which can be assigned to a variable is called literal.
+			for  eg. double salary = 1000000.0 ; ------> here 1000000.0 is literal
+					 boolean flag = true;   ---> here true is literal.
+					 String str = "Johnson" ---> here Johnson is a String Literal. 
+			
+G. For Enumerations - Enum.
+	
+------------------------------------------------------------------------------------------------	
+Data Types -
+Java is a strongly typed language.
+And thus every variable must be declared with a data type.
+
+bit --> 1 or 0 -- smallest memory  - it can hold a single binary digit/value
+byte --> 8 bits combine to form 1 byte
+
+
+Primitive data types available in Java:-
+-128 to 127
+byte  --> size - 1 byte  (8 bits ) ---> -2^7 to  2^7 - 1  -- default value =0 
+short --> size - 2 bytes   --> -2^15 to 2^15-1 , default value =0
+int   --> size - 4 bytes
+long  --> size - 8 bytes
+float --> size - 4 bytes
+double -> size - 8 bytes
+boolean --> it can only have values true or false  default - false
+char  --> size 2 bytes   --- default value is space which numeric 0.
+
+
+examples :-
+
+int x = 100;
+byte b =10;
+
+
+x = b ; possible ---> TypeCasting 
+b = x;   not possible , error :- cannot convert types
+b = (byte) x ----> explicit typeCasting
+
+Literals/Constant values that we assign to variables :-
+
+Numeric Data types :-
+numbers -- byte, short, int, long and also float and double 
+
+-0 1, -100 .......
+
+for long type literals you should use suffix l or L
+int x = 10;
+long x = 10L  or 10l;
+
+for float the literals should have suffix "f" or "F".
+for double no need
+float salary = 100.0f;
+float weight = 270.066465F;
+double height = 5.17;
+
+Boolean Data types :-
+only 2 literal values ---> true or false
+True not valid
+TRUE not valid
+Because Java is case sensitive Language.
+
+char Literals :-
+Character literals should be enclosed in single inverted commas.
+char c = 'c';
+char c = 50;
+a - 97
+A - 67
+it can have any numeric value between 0 to 65535
+every number represents a specific ascii character.
+
+
+String Literals :-
+Any sequence of characters enclosed in double inverted commas in nothing but string literal.
+And it should be stored in Java class called as String 
+
+int x = 10;
+String name = "Ram";
+
+String name = null ;  -- nul is a type of literal which also the default value for any object reference.
+
+Object obj = null;
+Object obj;
+
+; ---->  marks the end of current statement.
+
+int a = 5;
+
+Memory allocation when
+
+
+
+------------------------------------------------------------------------------------------------	
+
+Amruta --->
+	50 --> 
+	int marks1 = 87;
+	int marks2 = 87;
+	.
+	.
+	.
+	.
+	int marks50 = 54;
+
+
+Arrays :-
+An array, is a data structure consisting of a collection 
+of elements, each identified by at least one array index or key.
+
+We can say array elements are stored in contigious memory locations.
+
+Need of Array :-
+	To store multiple values of same type without having to declare multiple variable and easy access is possible with index and array reference.
+
+Disadvantage of array :- 
+	we will discuss when topic of collection starts.
+
+	
+Arrays can single dimension or multidimension:=
+
+1. Single Dimension Array :-
+	
+	Declaration and creation of single dimension array.
+	
+	int[] marks ;
+	
+	//Declaration
+	int[] marks;
+	int marks[];
+	int []marks;
+	
+	//Creation
+	marks = new int[100];
+	or
+	int[] marks = new int[4];
+	
+	or 
+	char[] vowels  =  {'a', 'e', 'i', 'o', 'u'}
+	
+	Accesing the elements of an array.
+	arrayName[index]
+	sysout(vowels[0]);    <--- to access first elements of array index is zero;
+	sysout(vowels[4]);
+	marks[0] = 59;
+	marks[1] = 67;
+	marks[2] = 87;
+	
+2. Two dimension array (think as Matrix) :
+	
+	Array of arrays.
+	int[][] numbers = new int[3][2];
+	
+	int[][] numbersInTwoDim = new int[3][];
+	numbersInTwoDim[0] = new int[4];
+	
+	These are actullay array of array
+	
+	All of the below are valid declartions.
+	long[][] numbers;
+	long[] []numbers;
+	long [][]numbers;
+	long numbers[][];
+	long[] numbers[];
+
+3. Three dimension array 
+	
+	eg. 
+	int[][][] matrix;
+
+
+Length of an array :-
+	there is an implicit variable called " length " associated with every which represents size of the array.
+	a.length ----> size of array
+	int[] a = new int[100];
+	a.length   --> 100 
+	a[101]  ----> Array IndexOutOfBound
+	[I
+	[[I
+	[D
+	String
+------------------------------------------------------------------------------------------------
+
+Operators in Java:-
+
+Assignment Operator(=) :-
+	int a=5;
+	int a, b;
+	a=b=10;
+	String s = new String("MyName");
+	Employee e = new Employee();
+
+Arithmatic Operators(+, -, * , / , % ) :-
+	if you perfrom arithmatic operation on int and int --> int
+	if you perfrom arithmatic operation on int and float --> float
+	if you perfrom arithmatic operation on int and long --> long
+	if you perfrom arithmatic operation on float and long --> long
+	if you perfrom arithmatic operation on byte and int --> int
+	if you perfrom arithmatic operation on byte and byte --> int
+	
+	The result type arithmatic operation has size 
+	max(type of a, type of b, int)
+	
+
+Relational Operators(> , < , >=, <=) :-
+	the result of such operation will be boolean.
+And would be used to take some programming decision.	
+	
+Equality Operators(==, !=) :-
+	For premitive data types it checks the value equality.
+	But for Object type or referencetype variables it checks referenceequality only.
+	Meaning it checks if both the objects are pointing to same object in the memory.
+
+instanceOf Operator :-
+	String s = "Kahjgfd";
+	if(s instanceOf String)
+
+BitWise Operator :-
+& ,| ,  ^ 
+
+10 ---> 1010
+8  ---> 1000
+&  ---> 1000 (8)	
+
+
+BitWise complement Operator:-
+~
+int a = 10;
+~a;
+10-->  0000000,...01010;
+~ -->  1111111,...10101;
+
+
+Boolean complement operator(!) :-
+	it is only applicable to boolean types.
+	and it inverts the value.
+	
+	!true => false
+	!false => true
+	
+	
+	
+Logical Operator :-
+&& || 
+	Again applicable on boolean types.
+	Generally used to compound the conditional decisions
+
+TypeCasting
+	
+	
+Compound Operator(+=,  -=, *=, /=) :-
+
+Ternary or Conditional Operator:-
+	int x=(10>20)?30:40
+	(condition)?true_case_actions:false_case_actions
+
+Increment or Decrement Operator:-
+	pre and post Increment  ++i, i++
+	pre and post Decrement  --i, i--
+	i=5  
+	a = ++i;  ====> a will be 6, and i will also become 6
+or  a = i++;  ====> a will be 5, and i will become 6  
+	
+	
+Operator priority or Precedence :-
+1. Unary operators:  x++ , x-- , ++x , --x , ~ , ! , new , <type>
+2. Arithmetic operators : * , / , % , + , - .
+3. Shift operators : >> , >>> , << .
+4. Comparision operators : <, <=,>,>=, instanceof.
+5. Equality operators: == , !=
+6. Bitwise operators: & , ^ , | .
+7. Short circuit operators: && , || .
+8. Conditional operator: (?:)
+9. Assignment operators: += , -= , *= , /= , %= . . .
+
+
+----------------------------------------------------------------
+Flow Control in Java :-
+
+1. if - else 
+	if(boolean_condition){
+		//actions for true scenario
+		}
+	else{
+		//actions for else(false) case
+	}
+	
+	
+	
+	if(boolean_condition){
+		//actions for true scenario
+		}
+	else if {
+		//actions for else(false) case
+	}else {
+	}
+	
+	
+2. Switch Case :-
+	int variable;
+	switch(variable):
+	case 1 :
+			{
+			
+			}
+	case 2 : 
+			{
+			
+			}
+	.
+	.
+	.
+	default :
+			{
+			}
+
+fallthrough condition.
+
+default case can be placed anywhere inn sequence of cases.
+
+
+Loops/ Iterative Statements :-
+1. while
+2. do..while
+3. for loop
+
+
+
+1. while loop	
+
+	while(boolean condition){
+		//statements........
+		
+		////have something which updates the boolean condition for next iteration
+	}
+	
+	i want to print numbers from 1 to 10;
+	int number = 1;
+	while(number <=10)
+	{	
+		sysout("number");
+		number++;
+	}
+
+Note :- Always make sure the loop is not infinite by having some updatation statement.
+	
+2.do ....  while() :-
+
+	do{
+	}while(boolean_condition)
+	
+	Note :- First iteration is compulsorily executed.
+	
+3. for loop :-
+		
+	for(initial_value; boolean_condition ; updatation_of_var ){
+		///statements to be iterated
+	}
+	
+	eg. :-
+	for(int number=1;number <=10; number++){
+	}
+	sysout(number);
+	
+	
+4. for each loop.
+		///we will study later. during collection.
+		
+* Control Statements:-
+1. break;
+2. continue;
+
+
+for(int number=1;number <=10; number++){ //continue brings control here
+			if(number%5==0) 
+				break;			
+			System.out.println(number);
+}
+///break brings control here
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+Package in Java :-
+
+Packages are used in Java in order to prevent naming conflicts, to control access, to make searching/locating and usage of classes, interfaces, enumerations and annotations easier, etc.
+
+A Package can be defined as a grouping of related types (classes, interfaces, enumerations and annotations ) providing access protection and namespace management.
+
+Programmers can define their own packages to bundle group of classes/interfaces, etc. It is a good practice to group related classes implemented by you so that a programmer can easily determine that the classes, interfaces, enumerations, and annotations are related.
+
+In every Java file first statement is always package statement.
+eg.:  package com.learning;
+
+Some existing packages in Java :- 
+	java.util
+	java.lang
+	
+Importing a class or interface from another package :-
+import java.util.List;
+import java.util.*;
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+>identifier
+>Variable
+>DataTypes
+>Operators
+>Control Statements
+>Loops
+>package statement
+>Methods in Java
+
+
+Methods in Java :-
+		Any block of code with a name which may or may not take input argument 
+and produces output arguement or does the quoted task is called method.
+> To have code reusability
+> To improve readability
+
+			return_type method_name(<input parameters or arguments>){
+						//method body
+						//multiple statements
+				<an optional return statement>
+			}
+		
+		eg. A method which returns sum of two integers
+			public int sum(int n1, int n2){
+				int sum;
+				sum = n1+ n2 ;
+				return sum;
+			}
+		
+		>> 	calling a method :-
+				method_name(parameters_values)
+			eg. sum(10,20);
+	
+	
+Var-arg method in Java :-
+	//var-arg method :
+		public int getSumOfNumbers(int... x) {
+			int sum =0;
+			for(int i=0;i < x.length ; i++) {
+				sum = sum + x[i];
+			}
+			System.out.println("Var-arg method is called");		
+			return sum;
+		}
+		
+		
+	It is using internally array to store variable arguments.
+
+Notes :-
+1. You can have variable type argument with normal argument as well but , variable argument should be the last in list.
+2. In a method , there can be only a single variable argument.
+
+
+
+main Method in Java :-
+	public static void main(String[] args){
+	}
+	
+	NoSuchMethodError : main
+	
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+Interface in Java :-
+	An interface is a description of the actions that an object can do.
+	In Object Oriented Programming, an Interface is usually a set of methods 
+	that a object must implement to be of particular type.
+	
+	For example :
+	We have an interface called Vehicle, which has following basic 4 methods.
+	Now for any class to be of type Vehicle it must implement the below 4 methods.
+	So interface just forces the class implementing it to implement the methods of interface.
+
+Lets take code example :-
+		public interface Vehicle{
+				boolean start();
+				public void drive();
+				public void break();
+				public double stop();
+		}
+		
+------For interface discussion stops , we will get back to it again----------
+------There is lot to it ----------------------------------------------------
+
+OOPS :-
+Object Oriented Programming :-
+	
+	What is an Object ?????  - instance Of class
+	What is a Class ?????    - it is a blueprint to create objects.
+	
+	attributes/properties/variables/data 
+	behaviour/methods/functions
+	
+	public class Car{
+		String brand;
+		String color;
+		double price;
+		
+		public void drive(){
+			print("Car Driving");
+		}
+		
+		public void displayCarDetails(){
+			print("Car details are as below :\nbrand = "+ brand 
+			+ "\ncolor = " + color );
+		}
+		
+	}
+	
+	public static void main(){
+		Car c1 = new Car();
+		c1.brand = "Honda";
+		c1.color = "black";
+		c1.price = 14.15;
+		c1.drive();
+	}
+	
+Constructor :-
+	Def :- It is a special method inside class with the name 
+same as that of class and with no return type is called Constructor.
+It is used to initialize the object at creation time.	
+
+	public class Car{
+		String brand;
+		String color;
+		double price;
+		
+		//Constructor  access_Spe return_type method_name(){}
+		public Car(){
+			brand = "Default";
+			color = "Default-white";
+			price = 5.0;
+		}
+		
+		public void drive(){
+			print("Car Driving");
+		}
+		
+	}
+	
+	public static void main(){
+		Car c1 = new Car();
+		c1.drive();
+	}
+	
+this keyword in Java :-
+		In simplest words , "this" is the reference variable that points to the current object instance.
+		so we can access any variable of current object instance like 
+			this.brand ,
+			this.color, ......etc.
+		And so the methods :
+			this.drive(),  ......etc
+		
+	
+Default-Constructor :-
+		A constructor without any arguement is called default constructor.
+		And if we don't declare any specific constructor then it is provided by Java.
+		Car(){}
+		
+	Parameterized constructor.
+		Car(String brand, String color, double price){}
+		
+	Multiple Constructors in the same class :-
+	Calling another constructor of same class from within the Constructor.
+	While calling another constructor from inside a constructor, that constructor call must be the first line inside constructor.
+	
+-----------------------------------------------------------------------------------
+
+We can see from above examples that to access the object 
+variables,
+there is a need to create object first.
+
+Static Members of the Class :-
+	We can declare a 
+		method,variable,block, inner class as static in java.
+	To declare a memebr as static , use keyword static preceeding its declartion.
+	example :- static int count,  static void run(), etc.
+
+Every non-static member(method & variables) belongs to object and we need to create object before being able to access them.
+But every static member BELONGS to class and can be accessed even before creating any object.
+Also since static member belongs to class so it is accessible to every object of that class as well.
+So we can say static members are shared across all instances.
+
+
+Example :- We cannot call drive() method of Car class before creating object c1 of Car class.
+
+So what if we want to have such a method in a class which we can call even without creating an object.
+
+And as we saw that every instance of Car will have seperate copy of 
+variables such as brand, color and price.
+What if we want to have some variable or data which is common/shared for all Car class object.
+
+The answer to both these needs is use of static method and variables:-
+
+Rules regarding static and non-static :-
+1. Not allowed to access non-static members from static member of class.
+
+2. static block:-
+	static{
+		///........
+	}
+
+3. static block gets executed at the time of class loading.
+	Any execution we want to be executed before creation of any of the object for the class can be written inside static block.
+	
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+OOPS Principles :-
+1. Encapsulation :- Binding of data and code together inside single entity is called Encapsulation.
+	---> class in Java is an example of encapsulation, it binds data (variables) and code (methods) together.
+	---> real world example we can , think of any object like fan, mobile, laptop are example of Encapsulation.
+		 where multiple other objects(data) are packed in outer body along with some functions of it inside.
+	Main advantage is :- Security, Maintainability.
+	
+	If a class has all its data/variables declared as private such class is called as tightly encapsulated class.
+
+private keyword :-
+		If for any variable we want to limit/restrict the access to only within the class, then it should be declared as private.
+
+Getter & Setters :-
+		Declaring the variable private will not allow accesing/updating the variable from outside the class and if we want to give 
+		such functionality appropriate getter and setter methods should be provided.
+			
+	
+	
+	
+2. Abstraction :-
+	Abstraction is hiding the actual implementation and just exposing the functionality/service without , 
+	user being able to see internal implementation details.
+	
+Abstract method :-
+	Any method which does not have body is called as abstract method.
+		eg . public abstract int calculateInterest();
+		
+Abstract Class :-
+	Any class which has ateleast 1 abstract method is called Abstract class.
+	
+	abstract class Account{
+			
+		int roi;
+		int accountType;
+		public abstract int calculateInterest();
+		
+	}
+	
+	Account a = new Account(); //not allowed  , compile time error.
+	a.calculateInterest();    // not allowed  , compile time error.
+	
+An abstract class cannot be instantiated.
+In Java abstraction is implemented using Interfaces and Abstract classes.
+
+	
+
+3. Inheritance :-
+	Inheriting the properties from parent is called inheritance.
+	//Being able to access or use the parents properties is called inheritance.
+	
+	real world example :- We inherit many properties from our both the parents and grandparents.
+	Java :- In java inheritance is observerd with the help of "extends" and "implements" keywords.
+	
+		Animal (eat, sleep, walk)
+		|
+		|
+		|
+		Dog (eat, sleep, walk)
+		
+List down differences between abstract class  and interfaces before Java 8.
+
+	abstract Class                           |                  Interfaces
+
+Visit :- https://docs.oracle.com/javase/tutorial/java/concepts/index.html  for more details and theory.  -- for OOPS concepts 
+
+for Language basics :-  https://docs.oracle.com/javase/tutorial/java/nutsandbolts/index.html
+
+for inheritance and others :- https://docs.oracle.com/javase/tutorial/java/IandI/index.html
+
+####### Parent class reference can hold a child class object  #########
+
+class Dog extends Animal{
+}
+
+main{
+	Dog d = new Dog();       ///Valid
+	Animal a = new Dog();   ...//Valid 
+	Dog x = new Animal();    .....//Not valid
+}
+Note here is that though parent class reference can hold child class object but then it will be able to call only the methods which are present in both child and parent class.
+Child class specific method cannot be called.
+
+
+
+
+
+4. Polymorphism :-
+	
+	Same name but multiple forms are possible in Java and this is called as polymorphism.
+	
+	Types/ways of Polymorphism in Java :-
+	
+	1. Compile Time Polymorphism (Method Overloading & Method hiding) (also called static polymorphism)
+	2. Runtime polymorphism.    (Method Overriding)                    (also called dynamic polymorphism)
+	
+	
+A. Method Overloading :-
+
+		Methods having same name but different arguements (no. of arguement of type of arguements) inside the same class is called Method overloading.
+
+2 methods are said to be overloaded iff, it satifies below 3 criteria :-
+1. The methods should belong to same class
+2. The name of methods must be same
+3. Argument list must be different.(No of args , type of args, sequence of args)
+
+Note :- Methods signature is method name followed by its arguements.
+		Return type is not the part of Method Signature.
+		
+2. There is possibility of up-conversion of arguement.
+
+
+	
+
+
+
+
+		
+		public return_type name_of_method(input arguments){
+		
+		}
+	
+	public double sum(double d1, double d2){
+		return d1+d2;
+	}
+	
+	public double sum(double d1, int d2){
+		return d1+d2;
+	}
+	
+	public double sum(double d1, double d2, double d3){
+		return d1+d2+d3;
+	}
+
+
+Static method can also be overloaded, same way as that of non-static method.
+
+Examples :- 
+public class Demo {
+
+	public static void main(String[] args) {
+		
+		Demo d = new Demo();
+		byte a = 1;
+		byte b = 2;
+		d.dispSum(a, b);
+	}
+	
+	public void dispSum(int a , int b) {
+			System.out.println("int method : Sum is : " + (a+b) );
+	}
+	
+	public void dispSum(short a , short b) {
+		System.out.println("short method : Sum is : " + (a+b) );
+	}
+	
+	
+	
+/*
+byte---> short--> int --> long --> float --> double
+                  ^
+        Char------|
+*/
+	
+}
+
+
+---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+
+
+B. Method Overriding :-
+		When child class provides its own implementation to override the parent class implementation, it is method overlridding.
+		
+methods are said to be overlridden iff, it satifies below 3 criteria :-
+1. The methods should belongs to different class. (Child-parent)
+2. The name of methods must be same and arguements should be same.
+3. Implementation might be different.
+
+
+Notes:- 
+1. While overriding a method in child class we can have the return type same as that of parent class method 
+	or it should be subclass of the return type used in parent class method.
+	(These are called co-variant return types).
+2. Similar condition applies in case of exceptions(Checked Exception), Child class method should have either same or narrow exception compared to parent class method's throw clause.
+3. The access specifier can only have narrow or same scope in child class compared to parent class.
+4. Method resolution for overridden methods happen at runtime by JVM based on the actual object present in the memmory.
+	And this resolution of method by compiler is called Dynamic method dispatch.
+
+example :-
+
+	public class Animal{
+		
+		public void movement(){
+				"Animal is moving , dont know how !"
+		}
+	}
+	
+	public class Frog extends Animal {
+		
+		public void movement() {
+				"Frog is moving : jump , jump, jump.........!"
+		}
+		
+	}
+	
+	public class Snake extends Animal{
+		public void movement(){
+				"Snake is moving : crawl , ...."
+		}
+	}
+
+
+What about static methods :-
+When we try to override the static method it is called method hiding.
+And it happens before runtime (at compile time) , hence categorised as compile time polymorphism.
+
+
+
+
+class Node{
+	int data;
+	Node link;
+}
+
+class LinkedList{
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+public abstract class List{
+	
+	public abstract void add(int a);
+	
+	public abstract int getAtInx(int index);
+	
+	public abstract void removeFromIdx(int index);
+	
+	public void displayItems(){
+		/////
+	}
+	
+	public void sort(){
+	}
+}
+
+public class LinkedList extends List {
+	
+}
+
+public ArrayList extends List{
+}
+
+
+
+
+
+
+
+super keyword in  constructors :-
+package com.learning;
+
+import java.io.IOException;
+
+public class Parent {
+
+	public Parent() {
+		System.out.println("Parent class constructor");
+	}
+	
+	public void parentMethod() {
+		System.out.println("Parent class method parentMethod executing");
+	}
+
+	public void parentOnlyMethod() {
+		System.out.println("parentOnlyMethod executing");
+	}
+
+	/*
+	 * public static void staticMethodOfP() {
+	 * System.out.println("Parent class static method executing"); }
+	 */
+
+}
+
+
+
+
+
+package com.learning;
+
+import java.io.IOException;
+
+public class Child extends Parent {
+
+	public Child(String s) {
+		super();
+		System.out.println("Child class constructor");
+	}
+	
+	@Override
+	public void parentMethod() {
+		System.out.println("Child class method parentMethod executing");
+	}
+
+	public Number getNumber() {
+		return 1;
+	}
+
+	public Parent getSampleObject() {
+		return new Parent();
+	}
+
+	/*
+	 * public static void staticMethodOfP() {
+	 * System.out.println("Child class static method executing"); }
+	 */
+
+	public void childMethod() {
+		System.out.println("childMethod executing");
+	}
+
+}
+
+//Child.staticMethodOfP()
+
+
+
+
+
+
+package com.learning;
+
+public class GrandChild extends Child{
+
+	public GrandChild() {
+		super("String object");
+		System.out.println("Grandchild constr");
+	}
+	
+	public GrandChild(String s) {
+		super("abc");
+		System.out.println("Grandchild constr");
+	}
+	
+	
+	public Short getNumber() {
+		return 2;
+	}
+	
+	public GrandChild getSampleObject() {
+		return new GrandChild();
+	}
+	
+	//GrandChild is child of Child
+	//Integer is also the child of Number.
+	
+	
+}
+
+///Object
+
+
+/*
+
+byte       Byte
+short      Short
+int        Integer
+float      Float
+long       Long
+doule      Double
+
+
+
+
+*/
+
+
+
+
+
+package com.learning;
+
+public class Main {
+
+	public static void main(String[] a) {
+		GrandChild g  = new GrandChild();
+	}
+	
+	
+	/*
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Parent p = new Parent();
+		p.parentMethod();           //parent
+		p.parentOnlyMethod();       //parent
+		
+		Child c = new Child();
+		c.parentMethod();           //child - overridden
+		c.parentOnlyMethod();       //parent
+		c.childMethod();		    //child
+		
+		Parent p1 = new Child();
+		p1.parentMethod();          //child - override   , 
+		p1.parentOnlyMethod();          // parent
+		//p1.childMethod();           //child 		
+		
+		
+		
+		
+		///
+		GrandChild c2 = new GrandChild();
+		Number x =  c2.getNumber();
+		System.out.println(x);
+	}
+*/
+}
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+Singleton Design Pattern :-
+	A singleton class is one, which will have exactly and only one instance of it throughout the program.
+
+Example :- Session objects for a user.
+
+public class Singleton{
+
+		private static Singleton s = null;
+		
+		
+		private Singleton(){
+		}
+		
+		public static Singleton getInstanceOfSingleton(){
+			if(s == null){
+				s = new Singleton();
+			}
+			return s;
+		}
+		
+}
+
+
+Singleton s1 = new Singleton();  ---> invalid because private constructor.
+
+
+Singleton s2 = Singleton.getInstanceOfSingleton();
+Singleton s3 = Singleton.getInstanceOfSingleton();
+
+
+Assignment :- Learn about Factory Design pattern and Singleton Design patterns.
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+Scopes for different access specifier :-
+
+1. public     - Can be accessed from anywhere.
+
+2. default    - Can be accessed only within the same package. 	
+
+3. protected  - Inside the same class and Child class.
+
+4. private    - only in same class.
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+###  
+1. IS-A Relationship
+			-- Established by inheritance(extends keyword or implements keyword).
+				-- class Animal , class Dog extends Animal	
+						Dog IS-A Animal.
+			
+			
+2. HAS-A Relationship
+		--class Car{
+				
+				Engine e = new Engine();
+				Seat s = new Seat();
+				
+		}
+		-- 
+
+		
+Assignments :-  What are Composition & Aggregation.
+
+-------------------------------------------------------------------------------------------------------------------------
+Encapsulation, Abstraction, Inheritance, Polymorphism.
+
+
+-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
+Exception :-
+	In Java, an exception is an event ( or we can say abnormal event) that disrupts the normal flow of the program. 
+	It is an object which is thrown at runtime.
+	
+	
+Exception Handling in Java is one of the effective means to handle the runtime errors so that the regular flow of the application 
+can be preserved. Java Exception Handling is a mechanism to handle runtime errors such as ClassNotFoundException, IOException, 
+SQLException, RemoteException, etc.
+
+Exception is an unwanted or unexpected event, which occurs during the execution of a program, i.e. at run time, 
+that disrupts the normal flow of the program’s instructions. Exceptions can be caught and handled by the program. 
+When an exception occurs within a method, it creates an object. This object is called the exception object. 
+It contains information about the exception, such as the name and description of the exception and the state of the program 
+when the exception occurred.	
+
+
+ERROR :- 
+Errors represent irrecoverable conditions such as Java virtual machine (JVM) running out of memory, 
+memory leaks, stack overflow errors, library incompatibility, infinite recursion, etc. Errors are usually beyond the control 
+of the programmer, and we should not try to handle errors.
+
+
+
+
+Three types of exceptions as per Oracle :- 
+
+1) Checked Exception
+The classes that directly inherit the Throwable class except RuntimeException and Error are known as checked exceptions. 
+For example, IOException, SQLException, etc. Checked exceptions are checked at compile-time.
+
+2) Unchecked Exception
+The classes that inherit the RuntimeException are known as unchecked exceptions. For example, ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, etc. Unchecked exceptions are not checked at compile-time, but they are checked at runtime.
+
+3) Error
+Error is irrecoverable. Some example of errors are OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
+
+*Exception Hierarchy:- Refer to image.
+
+
+
+
+1. try		-->  The "try" keyword is used to specify a block where we should place an exception code. It means we can't use try block alone. The try block must be followed by either catch or finally.
+2. catch	-->  The "catch" block is used to handle the exception. It must be preceded by try block which means we can't use catch block alone. It can be followed by finally block later.
+3.finally		-->  The "finally" block is used to execute the necessary code of the program. It is executed whether an exception is handled or not. 	
+4.throw	    -->  The "throw" keyword is used to throw an exception.
+5.throws	    -->  The "throws" keyword is used to declare exceptions. It specifies that there may occur an exception in the method. It doesn't throw an exception. It is always used with method signature.
+
+
+
+
+
+
+
+How Does JVM handle an Exception?
+Default Exception Handling: Whenever inside a method, if an exception has occurred, the method creates an Object known as an Exception Object and hands it off to the run-time system(JVM). The exception object contains the name and description of the exception and the current state of the program where the exception has occurred. 
+Creating the Exception Object and handling it in the run-time system is called throwing an Exception. 
+There might be a list of the methods that had been called to get to the method where an exception occurred. 
+This ordered list of the methods is called Call Stack. Now the following procedure will happen. 
+
+
+The run-time system searches the call stack to find the method that contains a block of code that can handle the occurred exception. The block of the code is called an Exception handler.
+The run-time system starts searching from the method in which the exception occurred, and proceeds through the call stack in the reverse order in which methods were called.
+If it finds an appropriate handler, then it passes the occurred exception to it. An appropriate handler means the type of the exception object thrown matches the type of the exception object it can handle.
+If the run-time system searches all the methods on the call stack and couldn’t have found the appropriate handler, then the run-time system handover the Exception Object to the default exception handler, which is part of the run-time system. This handler prints the exception information in the following format and terminates the program abnormally.
+Exception in thread "xxx" Name of Exception : Description
+... ...... ..  // Call Stack
+
+
+Exception Handling using try catch :-
+
+try{
+		Exception prone code
+}catch(ExceptionType e){
+		//Handling code incase of exception occurred
+}
+
+
+
+Difference between throw and throws keyword.
+Research about creating our own CustomException and show me its example.
+
+
+1. Always catch the specific exception in catch block.
+	try {
+			File related operations  which might throw FileNotFoundException
+		}
+	catch(Exception e){                             /// this is not recommended
+		//handling code
+	}
+	
+	Correct way 
+	try {
+			File related operations  which might throw FileNotFoundException
+		}
+	catch(FileNotFoundException e){                             /// this is recommended
+		//handling code
+	}
+
+
+
+2. Multiple catch blocks and they are having same handlign in case of exception occurs:-
+
+	try {
+			File related operations  which might throw FileNotFoundException or IOException
+		}
+	catch(Exception e){                             /// this is not recommended
+		//handling code
+	}
+
+
+	Recommended way :-
+	try {
+			File related operations  which might throw FileNotFoundException or IOException
+		}
+	catch(FileNotFoundException || IOException exc){                            
+		//handling code
+	}
+	
+	
+2. Multiple catch blocks and they are having different handling in case of exception occurs:-
+
+	try {
+			File related operations  which might throw FileNotFoundException or IOException
+		}
+	catch(FileNotFoundException e){                            
+		System.out.println("File is not found so no further operation can be performed");
+		return;   
+	}catch(IOException e){
+		System.out.println("IOException occurred, will go with further processing");
+	}
+
+
+
+3. Multiple catch block but exceptions having parent-child relationship.
+
+	try {
+			File related operations  which might throw FileNotFoundException
+		}
+	catch(Exception){
+			/// Custom handling
+	}
+	catch(FileNotFoundException e){                            
+		System.out.println("File is not found so no further operation can be performed");
+		return;   
+	}
+	
+	
+	
+finally :-
+
+public static void main(String[] args) {
+	
+	try {
+		System.out.println("Line 1 in side try");
+		int x = 100/0;
+		Files.delete(Paths.get("", "text.txt"));    //IOException
+		System.out.println("Line 2 in side try");
+		System.out.println("Line 3 in side try");
+		return;
+	}catch(IOException iE) {
+		System.out.println("IOException:- File was not present");
+	}
+	catch(Exception e) {
+		System.out.println("Exception :- Some exceptio occured" + e.getMessage());
+		//return ;
+	}
+	finally {
+		System.out.println("Finally block executing");
+		// This block will be executed whether there is an exception occured or not !
+		//Clean up / necessary code
+		//eg. file close, jdbc connection 
+	}
+	
+	//outside try catch
+	System.out.println("Outside try catch block");
+	
+	}
+	
+	
+	
+3 try with resources :- 
+
+	//We will study it in file lectures.
+	// Using try-with-resources
+		try (FileOutputStream fileOutputStream = new FileOutputStream("abc.txt")) {
+			fileOutputStream.write(9);
+			System.out.println("Message written to file successfuly!");
+		} catch (Exception exception) {
+			System.out.println(exception);
+		}
