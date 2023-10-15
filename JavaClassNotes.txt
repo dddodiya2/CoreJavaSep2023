@@ -220,23 +220,71 @@ Length of an array :-
 
 Operators in Java:-
 
+Operators in java are way to perfrom some actions or processings on the  data.(mostly variables)
+
+Types of Operator :-
+
 Assignment Operator(=) :-
+Denoted by '=' sign.
+It assigns or puts the value of left side of the statement(generally its a variable) 
+to the right side of the statement(may be constant or an expression or a variable).
+
+	char c ='c';
 	int a=5;
 	int a, b;
 	a=b=10;
 	String s = new String("MyName");
 	Employee e = new Employee();
 
-Arithmatic Operators(+, -, * , / , % ) :-
-	if you perfrom arithmatic operation on int and int --> int
-	if you perfrom arithmatic operation on int and float --> float
-	if you perfrom arithmatic operation on int and long --> long
-	if you perfrom arithmatic operation on float and long --> long
-	if you perfrom arithmatic operation on byte and int --> int
-	if you perfrom arithmatic operation on byte and byte --> int
+	int d = a+b;
+	int e = d;
+
+Arithmatic Operators(+, -, * , / , % ) :-      10/3 = q=3 , remainder =1
+
++ adds the operands it is applied on.
+- Substracts second operand from the first operand.
+* provides multipliations of operands
+/ provides the quotient obtained after division of fist operand(dividend) by the second operand()divisor.
+% provides the remainder obtained after division of fist operand(dividend) by the second operand()divisor.
+
+% is called modulo operator and should be used when interested in remainder of the division.
+eg.  To check if a number is divisable by some other number. is 103 divisible by 7 ?
+
+
+Very important rules for Arithmatic operations :-
+>if you perform arithmatic operation on int and int --> int
+	eg. int a = 10; 
+		int b = 3;
+		int c = a + b;  ----> sum of (a+b) will be int only.
+		what if I do a/b ---> simple math says it should be 3.333333 
+			but Java says since both the operands are int the result will be int 
+			and thus it will be give only 3 as sum which in general terms is quotient.
 	
+>if you perform arithmatic operation on int and float --> float
+	int a = 10;
+	float b = 3.0f;
+	c = a/b; what should be the type of c? --> float based on rule2.
+			 what will be the value of c ? --> 3.333f
+	
+>if you perform arithmatic operation on int and long --> long
+	The reason behind this lies the sizes of dataTypes of operands. int (4bytes) long(8bytes).
+	
+>if you perform arithmatic operation on float and long --> long
+	The reason behind this lies the sizes of dataTypes of operands. float (4bytes) long(8bytes).
+
+>if you perform arithmatic operation on byte and int --> int
+	Same reason.
+>if you perform arithmatic operation on byte and byte --> int
+	byte b = 10;
+	byte a = 3;
+	byte c = a+b;
+	
+>if you perform arithmatic operation on short and short --> int
+
+The above rules adhere to below formula :-
 	The result type arithmatic operation has size 
 	max(type of a, type of b, int)
+	The maximum size among the operand1 or Operand2 or int will be the type of result.
 	
 
 Relational Operators(> , < , >=, <=) :-
@@ -245,7 +293,7 @@ And would be used to take some programming decision.
 	
 Equality Operators(==, !=) :-
 	For premitive data types it checks the value equality.
-	But for Object type or referencetype variables it checks referenceequality only.
+	But for Object type or referencetype variables it checks reference equality only.
 	Meaning it checks if both the objects are pointing to same object in the memory.
 
 instanceOf Operator :-
@@ -286,6 +334,12 @@ TypeCasting
 	
 	
 Compound Operator(+=,  -=, *=, /=) :-
+
+x = x + 1;
+is same as x += 1;   
+
+
+
 
 Ternary or Conditional Operator:-
 	int x=(10>20)?30:40
