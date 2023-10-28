@@ -1,0 +1,127 @@
+Flow Control in Java :-
+
+1. if - else 
+	if(boolean_condition){
+			//actions for true scenario
+		}
+	else{
+			//actions for else(false) case
+	}
+	
+	
+	
+	if(boolean_condition){
+		//actions for true scenario
+		}
+	else if(boolean_condition_2) {
+		//actions for boolean_condition_2 true
+		(boolean_condition false) case
+	}else {
+			//if none of the above conditions are true then this block will be executed
+	}
+
+
+Print hello if the number is divisible by 7, do nothing if not divisible.
+
+if(number%7 == 0){
+	System.out.println("hello");
+}
+
+else block is not compulsory.
+
+
+
+	
+2. Switch Case :-
+	int variable;
+	switch(variable){
+	case 1 :
+			{
+			
+			}
+	case 2 : 
+			{
+			
+			}
+	.
+	.
+	.
+	default :
+			{
+			}
+	}
+
+fallthrough condition.
+
+default case can be placed anywhere in sequence of cases.
+
+
+Loops/ Iterative Statements :-
+1. while
+2. do..while
+3. for loop
+
+
+
+1. while loop	
+
+	while(boolean condition){
+		//statements........
+		
+		////have something which updates the boolean condition for next iteration
+	}
+	
+	i want to print numbers from 1 to 3;
+	int number = 1;
+	while(number <=3)
+	{	
+		sysout("number is : " + number);
+		number++;
+	}
+	
+
+Note :- Always make sure the loop is not infinite by having some updatation statement.
+	
+2.do ....  while() :-
+
+	do{
+	}while(boolean_condition)
+	
+	Note :- First iteration is compulsorily executed.
+
+
+	
+	
+3. for loop :-
+		
+	for(initial_value; boolean_condition ; updatation_of_var ){
+		///statements to be iterated
+	}
+	
+	eg. :-
+	for(int number=1;number <=10; number++){
+		sysout(number);
+	}
+	
+	
+	
+4. for each loop.
+		///we will study later. during collection.
+		
+* Control Statements:-
+1. break;
+2. continue;
+
+
+for(int number=1;number <=10; number++){ //continue brings control here
+			if(number % 3 == 0)
+				continue;
+			
+			if(number%5==0) 
+				break;			
+			System.out.println(number);
+}
+///break brings control here
+
+--------------------------------------------------------------------------------------------------
+---------------
