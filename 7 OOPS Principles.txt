@@ -1,0 +1,470 @@
+OOPS Principles :-
+1. Encapsulation    ---> En-Capsul --> ation
+2. Abstraction
+3. Inheritance
+4. Polymorphism
+
+
+1. Encapsulation :- Binding of data and code together inside single entity is called Encapsulation.
+	---> class in Java is an example of encapsulation, it binds data (variables) and code (methods) together.
+	---> real world example we can , think of any object like fan, mobile, laptop are example of Encapsulation.
+		 where multiple other objects(data) are packed in outer body along with some functions of it inside.
+	Main advantage is :- Security, Maintainability.
+	
+	If a class has all its data/variables declared as private such class is called as tightly encapsulated class.
+
+private keyword :-
+		If for any variable we want to limit/restrict the access to only within the class, then it should be declared as private.
+
+Getter & Setters :-
+		Declaring the variable private will not allow accesing/updating the variable from outside the class and if we want to give 
+		such functionality appropriate getter and setter methods should be provided.
+			
+	
+	
+	
+2. Abstraction :-
+	Abstraction is hiding the actual implementation and just exposing the functionality/service without , 
+	user being able to see internal implementation details.
+	
+Abstract method :-
+	Any method which does not have body is called as abstract method.
+		eg . public abstract int calculateInterest();
+		
+Abstract Class :-
+	Any class which has atleast 1 abstract method is called Abstract class.
+	or which has abstract specifier in declartion is called abstract class.
+	
+	abstract class Account{
+			
+		int roi;
+		int accountType;
+		public abstract int calculateInterest();
+		
+	}
+	
+	Account a = new Account(); //not allowed  , compile time error.
+	a.calculateInterest();    // not allowed  , compile time error.
+	
+An abstract class cannot be instantiated.
+In Java abstraction is implemented using Interfaces and Abstract classes.
+
+public interface Flyable{
+	
+	public abstract void fly();
+	
+	public default void method2(){
+		//Some default impl
+	}
+	
+}
+
+
+public abstract class Car{
+
+	public abstract void drive();
+
+}
+
+
+main(){
+	Car c1 = new Car();    //// Abstract class cannot be instantiated.(Cannot create objects for it)
+}
+
+
+
+public abstract class Animal{
+	
+	public void walk(){
+		//some impl
+	}
+}
+	
+
+
+3. Inheritance :-
+	Inheriting the properties from parent is called inheritance.
+	//Being able to access or use the parents properties is called inheritance.
+	
+	real world example :- We inherit many properties from our both the parents and grandparents.
+	Java :- In java inheritance is observerd with the help of "extends" and "implements" keywords.
+	
+		Animal (eat, sleep, walk)
+		|
+		|
+		|
+		Dog (eat, sleep, walk)
+		
+List down differences between abstract class  and interfaces before Java 8.
+
+	abstract Class                           |                  Interfaces
+
+Visit :- https://docs.oracle.com/javase/tutorial/java/concepts/index.html  for more details and theory.  -- for OOPS concepts 
+
+for Language basics :-  https://docs.oracle.com/javase/tutorial/java/nutsandbolts/index.html
+
+for inheritance and others :- https://docs.oracle.com/javase/tutorial/java/IandI/index.html
+
+####### Parent class reference can hold a child class object  #########
+
+class Dog extends Animal{
+}
+
+main{
+	Dog d = new Dog();       ///Valid
+	Animal a = new Dog();   ...//Valid 
+	Dog x = new Animal();    .....//Not valid
+}
+Note here is that though parent class reference can hold child class object but then it will be able to call only the methods which are present in both child and parent class.
+Child class specific method cannot be called.
+
+
+----------------------------------------------------------------------------------------------------------
+
+
+4. Polymorphism :-
+	
+	Having same name but multiple/different forms are possible in Java and this is called as polymorphism.
+	
+	Types/ways of Polymorphism in Java :-
+	
+	1. Compile Time Polymorphism (Method Overloading ) (also called static polymorphism)
+	2. Runtime polymorphism.    (Method Overriding & & Method hiding)                    (also called dynamic polymorphism)
+	
+	
+A. Method Overloading :-
+
+		Methods having same name but different arguements (no. of arguement or type of arguements or sequence of args) inside the same class is called Method overloading.
+
+2 methods are said to be overloaded iff, it satifies below 3 criteria :-
+1. The methods should belong to same class
+2. The name of methods must be same
+3. Argument list must be different.(No of args , type of args, sequence of args)
+
+Note :- Methods signature is method name followed by its arguements.
+		Return type is not the part of Method Signature.
+		
+2. There is possibility of up-conversion of arguement.
+
+		
+	public return_type name_of_method(input arguments){
+		
+	}
+	
+	public double sum(double d1, double d2){
+		return d1+d2;
+	}
+	
+	public double sum(double d1, int d2){
+		return d1+d2;
+	}
+	
+	public double sum(double d1, double d2, double d3){
+		return d1+d2+d3;
+	}
+
+
+Static method can also be overloaded, same way as that of non-static method.
+
+Examples :- 
+public class Demo {
+
+	public static void main(String[] args) {
+		
+		Demo d = new Demo();
+		byte a = 1;
+		byte b = 2;
+		d.dispSum(a, b);
+	}
+	
+	public void dispSum(int a , int b) {
+			System.out.println("int method : Sum is : " + (a+b) );
+	}
+	
+	public void dispSum(short a , short b) {
+		System.out.println("short method : Sum is : " + (a+b) );
+	}
+	
+	
+	
+/*
+byte---> short--> int --> long --> float --> double
+                  ^
+        Char------|
+*/
+	
+}
+
+
+---------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+
+
+B. Method Overriding :-
+		When child class provides its own implementation to override the parent class implementation, it is method overlridding.
+		
+methods are said to be overlridden iff, it satifies below 3 criteria :-
+1. The methods should belongs to different class. (Child-parent)
+2. The name of methods must be same and arguements should be same.
+3. Implementation might be different.
+
+
+Notes:- 
+1. While overriding a method in child class we can have the return type same as that of parent class method 
+	or it should be subclass of the return type used in parent class method.
+	(These are called co-variant return types).
+2. Similar condition applies in case of exceptions(Checked Exception), Child class method should have either same or narrow exception compared to parent class method's throw clause.
+3. The access specifier can only have narrow or same scope in child class compared to parent class.
+4. Method resolution for overridden methods happen at runtime by JVM based on the actual object present in the memmory.
+	And this resolution of method by compiler is called Dynamic method dispatch.
+
+example :-
+
+	public class Animal{
+		
+		public void movement(){
+				"Animal is moving , dont know how !"
+		}
+	}
+	
+	public class Frog extends Animal {
+		
+		public void movement() {
+				"Frog is moving : jump , jump, jump.........!"
+		}
+		
+	}
+	
+	public class Snake extends Animal{
+		public void movement(){
+				"Snake is moving : crawl , ...."
+		}
+	}
+
+
+What about static methods :-
+When we try to override the static method it is called method hiding.
+And it happens before runtime (at compile time) , hence categorised as compile time polymorphism.
+
+
+Question :- Create a LinkedList using your own implementation in Java.
+
+
+super keyword in  constructors :-
+package com.learning;
+
+import java.io.IOException;
+
+public class Parent {
+
+	public Parent() {
+		System.out.println("Parent class constructor");
+	}
+	
+	public void parentMethod() {
+		System.out.println("Parent class method parentMethod executing");
+	}
+
+	public void parentOnlyMethod() {
+		System.out.println("parentOnlyMethod executing");
+	}
+
+	/*
+	 * public static void staticMethodOfP() {
+	 * System.out.println("Parent class static method executing"); }
+	 */
+
+}
+
+
+
+
+
+package com.learning;
+
+import java.io.IOException;
+
+public class Child extends Parent {
+
+	public Child(String s) {
+		super();
+		System.out.println("Child class constructor");
+	}
+	
+	@Override
+	public void parentMethod() {
+		System.out.println("Child class method parentMethod executing");
+	}
+
+	public Number getNumber() {
+		return 1;
+	}
+
+	public Parent getSampleObject() {
+		return new Parent();
+	}
+
+	/*
+	 * public static void staticMethodOfP() {
+	 * System.out.println("Child class static method executing"); }
+	 */
+
+	public void childMethod() {
+		System.out.println("childMethod executing");
+	}
+
+}
+
+//Child.staticMethodOfP()
+
+
+
+
+
+
+package com.learning;
+
+public class GrandChild extends Child{
+
+	public GrandChild() {
+		super("String object");
+		System.out.println("Grandchild constr");
+	}
+	
+	public GrandChild(String s) {
+		super("abc");
+		System.out.println("Grandchild constr");
+	}
+	
+	
+	public Short getNumber() {
+		return 2;
+	}
+	
+	public GrandChild getSampleObject() {
+		return new GrandChild();
+	}
+	
+	//GrandChild is child of Child
+	//Integer is also the child of Number.
+	
+	
+}
+
+
+package com.learning;
+
+public class Main {
+
+	public static void main(String[] a) {
+		GrandChild g  = new GrandChild();
+	}
+	
+	
+	/*
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Parent p = new Parent();
+		p.parentMethod();           //parent
+		p.parentOnlyMethod();       //parent
+		
+		Child c = new Child();
+		c.parentMethod();           //child - overridden
+		c.parentOnlyMethod();       //parent
+		c.childMethod();		    //child
+		
+		Parent p1 = new Child();
+		p1.parentMethod();          //child - override   , 
+		p1.parentOnlyMethod();          // parent
+		//p1.childMethod();           //child 		
+		
+		
+		
+		
+		///
+		GrandChild c2 = new GrandChild();
+		Number x =  c2.getNumber();
+		System.out.println(x);
+	}
+*/
+}
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+Singleton Design Pattern :-
+	A singleton class is one, which will have exactly and only one instance of it throughout the program.
+
+Example :- Session objects for a user.
+
+public class Singleton{
+
+		private static Singleton s = null;
+		
+		
+		private Singleton(){
+		}
+		
+		public static Singleton getInstanceOfSingleton(){
+			if(s == null){
+				s = new Singleton();
+			}
+			return s;
+		}
+		
+}
+
+
+Singleton s1 = new Singleton();  ---> invalid because private constructor.
+
+
+Singleton s2 = Singleton.getInstanceOfSingleton();
+Singleton s3 = Singleton.getInstanceOfSingleton();
+
+
+Assignment :- Learn about Factory Design pattern and Singleton Design patterns.
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+Scopes for different access specifier :-
+
+1. public     - Can be accessed from anywhere.
+
+2. default    - Can be accessed only within the same package. 	
+
+3. protected  - Inside the same class and Child class.
+
+4. private    - only in same class.
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+###  
+1. IS-A Relationship
+			-- Established by inheritance(extends keyword or implements keyword).
+				-- class Animal , class Dog extends Animal	
+						Dog IS-A Animal.
+			
+			
+2. HAS-A Relationship
+		--class Car{
+				Engine e = new Engine();
+				Seat s = new Seat();
+		}
+		-- 
+
+		
+Assignments :-  What are Composition & Aggregation.
+
+-------------------------------------------------------------------------------------------------------------------------
+Encapsulation, Abstraction, Inheritance, Polymorphism.

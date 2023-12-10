@@ -1,0 +1,20 @@
+Interface in Java :-
+	An interface is a description of the actions that an object can do.
+	In Object Oriented Programming, an Interface is usually a set of methods 
+	that a object must implement to be of particular type.
+	
+	For example :
+	We have an interface called Vehicle, which has following basic 4 methods.
+	Now for any class to be of type Vehicle it must implement the below 4 methods.
+	So interface just forces the class implementing it to implement the methods of interface.
+
+Lets take code example :-
+		public interface Vehicle{
+				boolean start();
+				public void drive();
+				public void break();
+				public double stop();
+		}
+		
+------For interface discussion stops , we will get back to it again----------
+------There is lot to it ----------------------------------------------------

@@ -1,0 +1,106 @@
+Methods in Java :-
+		Any block of code with a name which may or may not take input argument 
+and produces output arguement or does the quoted task is called method.
+> To have code reusability
+> To improve readability
+
+			return_type method_name(<input parameters or arguments>){
+						//method body
+						//multiple statements
+				<an optional return statement>
+			}
+		
+		eg. A method which returns sum of two integers
+			public int sum(int n1, int n2){
+				int sum;
+				sum = n1+ n2 ;
+				return sum;
+			}
+		
+		>> 	calling a method :-
+				method_name(parameters_values)
+			eg. sum(10,20);
+	
+	
+Var-arg method in Java :-
+	//var-arg method :
+		public int getSumOfNumbers(int... x) {
+			int sum =0;
+			for(int i=0;i < x.length ; i++) {
+				sum = sum + x[i];
+			}
+			System.out.println("Var-arg method is called");		
+			return sum;
+		}
+		
+		
+	It is using internally array to store variable arguments.
+
+Notes :-
+1. You can have variable type argument with normal argument as well but , variable argument should be the last in list.
+2. In a method , there can be only a single variable argument.
+
+
+
+main Method in Java :-
+	public static void main(String[] args){
+	}
+	
+	NoSuchMethodError : main
+	
+	
+------------------------------------------------------	
+
+
+returnType methodName(optional input arguments/parameters ){
+	//method body
+	//Here can be one ore more statements
+	//return statement (optional)
+}
+
+
+I want a method which takes 2 integers and returns sum of them.  --> int
+
+int sumOfTwoIntegers(int a, int b){
+	int sum = a + b ;
+	return sum ;
+}
+
+ICIC123
+
+--> cash deposit
+String cashDeposit(String bankAccNo, double amount){
+	//do some banking logic and do accountBalance + amount 
+	//
+	//
+	//
+	return "Deposit successful"
+}
+
+String message = cashDeposit("ICIC1234569870", 10000.00);
+System.out.println(message);
+//Note :- in practical it will be b1.cashDeposit("ICIC1234569870", 10000.00);
+
+
+-->Write a method which takes 2 integers and prints sum of them.(does not return anything).
+
+void sumOfTwoIntegers(int n1, int n2){
+	int sum = n1 + n2 ;
+	System.out.println("Sum is : " + sum);
+}
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+Q.1) Write a program which will take input as userName and will [rint message Good Morning + username 
+example :- Good Morning Archana.
+
+Q.2) Write a program which will have a method to find and return maximum element from an array.
+
+Q.3) create a method for cashWithdraw and use it in example.
+
+
+
+
+

@@ -1,0 +1,200 @@
+OOPS :-
+Object Oriented Programming :-
+	
+	What is an Object ?????  - instance Of class
+	What is a Class ?????    - it is a blueprint to create objects.
+	
+	attributes/properties/variables/data 
+	behaviour/methods/functions
+	
+	public class Car{
+		String brand;
+		String color;
+		double price;
+		
+		public void drive(){
+			print("Car Driving");
+		}
+		
+		public void displayCarDetails(){
+			print("Car details are as below :\nbrand = "+ brand 
+			+ "\ncolor = " + color );
+		}
+		
+	}
+	
+	public static void main(){
+		Car c1 = new Car();
+		c1.brand = "Honda";
+		c1.color = "black";
+		c1.price = 14.15;
+		c1.drive();
+	}
+	
+Constructor :-
+	Def :- It is a special method inside class with the name 
+same as that of class and with no return type is called Constructor.
+It is used to initialize the object at creation time.	
+
+	public class Car{
+		String brand;
+		String color;
+		double price;
+		
+		//Constructor  access_Spe return_type method_name(){}
+		public Car(){
+			brand = "Default";
+			color = "Default-white";
+			price = 5.0;
+		}
+		
+		public void drive(){
+			print("Car Driving");
+		}
+		
+	}
+	
+	public static void main(){
+		Car c1 = new Car();
+		c1.drive();
+	}
+	
+this keyword in Java :-
+		In simplest words , "this" is the reference variable that points to the current object instance.
+		so we can access any variable of current object instance like 
+			this.brand ,
+			this.color, ......etc.
+		And so the methods :
+			this.drive(),  ......etc
+		
+	
+Default-Constructor :-
+		A constructor without any arguement is called default constructor.
+		And if we don't declare any specific constructor then it is provided by Java/Object class.
+		Car(){}
+		
+	Parameterized constructor.
+		Car(String brand, String color, double price){}
+		
+	Multiple Constructors in the same class :-
+	Calling another constructor of same class from within the Constructor.
+	While calling another constructor from inside a constructor, that constructor call must be the first line inside constructor.
+	
+-----------------------------------------------------------------------------------
+
+We can see from above examples that to access the object 
+variables,
+there is a need to create object first.
+
+Static Members of the Class :-
+	We can declare a 
+		method,variable,block, inner class as static in java.
+	To declare a memebr as static , use keyword static preceeding its declartion.
+	example :- static int count,  static void run(), etc.
+
+Every non-static member(method & variables) belongs to object and we need to create object before being able to access them.
+But every static member BELONGS to class and can be accessed even before creating any object.
+Also since static member belongs to class so it is accessible to every object of that class as well.
+So we can say static members are shared across all instances.
+
+
+Example :- We cannot call drive() method of Car class before creating object c1 of Car class.
+
+So what if we want to have such a method in a class which we can call even without creating an object.
+
+And as we saw that every instance of Car will have seperate copy of 
+variables such as brand, color and price.
+What if we want to have some variable or data which is common/shared for all Car class object.
+
+The answer to both these needs is use of static method and variables:-
+
+Rules regarding static and non-static :-
+1. Not allowed to access non-static members from static member of class.
+
+2. static block:-
+	static{
+		///........
+	}
+
+3. static block gets executed at the time of class loading.
+	Any execution we want to be executed before creation of any of the object for the class can be written inside static block.
+	
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+
+
+
+
+copy Constructor:-
+
+
+class Student{
+
+	String name;
+	String schoolName;
+	int rollNo;
+	
+	public Student(){
+	}
+	
+	public Student(Student tempStudent){
+		this.name = tempStudent.name;
+		this.schoolName = tempStudent.schoolName;
+		this.rollNo = tempStudent.rollNo;
+	}
+	
+}
+
+
+main(){
+	Student s1 = new Student();
+	s1.name = "Raju";
+	s1.schoolName = "Sunrise High School";
+	s1.rollNo = 60 ;
+	
+	Student s2 = new Student();
+	s2.name = s1.name ;
+	s2.schoolName = s1.schoolName;
+	s2.rollNo = s1.rollNo ;
+	
+	
+	Student s3 = new Student(s1);
+	
+	
+}
+
+
+
+
+public Student(String name, String schoolName, int rollNo){
+		this.name = name;
+		this.schoolName = schoolName;
+		this.rollNo = rollNo;
+	}
+
+
+
+
+
+
+class Table{
+
+public void displayPriceInfo(){
+	sysout("The price list is as follows :");
+	this.method2();
+}
+
+public void method2(){
+	
+}
+
+}
+
+
+main(){
+
+	Table t1 = new Table();
+	t1.displayPriceInfo();
+
+}
