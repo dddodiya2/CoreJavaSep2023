@@ -14,7 +14,8 @@ OOPS Principles :-
 	If a class has all its data/variables declared as private such class is called as tightly encapsulated class.
 
 private keyword :-
-		If for any variable we want to limit/restrict the access to only within the class, then it should be declared as private.
+		If for any variable we want to limit/restrict the access 
+		to only within the class, then it should be declared as private.
 
 Getter & Setters :-
 		Declaring the variable private will not allow accesing/updating the variable from outside the class and if we want to give 
@@ -89,7 +90,7 @@ public abstract class Animal{
 	real world example :- We inherit many properties from our both the parents and grandparents.
 	Java :- In java inheritance is observerd with the help of "extends" and "implements" keywords.
 	
-		Animal (eat, sleep, walk)
+		Animal(eat, sleep, walk)
 		|
 		|
 		|
@@ -117,6 +118,89 @@ main{
 }
 Note here is that though parent class reference can hold child class object but then it will be able to call only the methods which are present in both child and parent class.
 Child class specific method cannot be called.
+
+
+Multiple Inheritence :- 
+Inheriting properties from more than 1 parent is called multiple inheritence.
+
+Multilevel Inheritence  :- 
+GrandFather --> Father --> You
+LivingOrg -> Animal -> Dog
+
+Interfaces in java can provide multiple inheritence but class does not provide that.
+
+In other words a class can extend only and only 1 class but can implement multiple interfaces.
+
+
+
+class Student {
+	protected String name;
+	protected int age;
+	
+	public void study(){
+	}
+	
+	public setName();
+	public getName();
+}
+
+
+class ScienceStudent extends Student{
+	String branch;
+	public setBranch();
+	public getBranch();
+}
+
+class EnggStudent extends ScienceStudent {
+	String course;
+	public setCourse();
+	public getCourse();
+}
+
+class CommerceStudent{
+}
+
+
+
+
+
+
+main() {
+	EnggStudent e1 = new EnggStudent();
+	e1.setName();
+}
+
+
+public interface Flyable{
+	
+	public abstract void fly();
+	
+}
+
+
+public interface walkable{
+	
+	public abstract void walk();
+	
+}
+
+class Crow implements Flyable, Walkable {
+	
+	public void fly(){
+		//Crow is flying method.
+	}
+	
+	
+}
+
+
+main() {
+	
+	Crow c1 = new Crow();
+	c1.fly();
+	
+}
+
 
 
 ----------------------------------------------------------------------------------------------------------
