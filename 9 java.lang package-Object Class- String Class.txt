@@ -1,0 +1,618 @@
+java.lang package :-
+It is not required to import lang package explicitly but the remaining packages we have to import.
+It is by-defult available to ech and every program in Java.
+It contains the classes and interfaces which are mostly commonly used.
+
+1] Objects Class :- 
+> It contains most commonly used methods needed for each class.
+> It belongs to java.lang package.
+> As object class acts as a root (or) parent (or) super for all java classes, by default its methods are available to every java class.
+> Note : If any class doesn't extends any other class then it is the direct child class of object
+If any class extends any other class then it is the indirect child class of Object.
+
+* Methods present in Object class :-
+
+i. public String toString();
+ii. public native int hashCode();
+iii. public boolean equals(Object o);
+iv. protected native Object clone()throws CloneNotSupportedException;
+v. public final Class getClass();
+vi. protected void finalize()throws Throwable;
+
+vii. public final void wait() throws InterruptedException;
+viii. public final native void wait()throws InterruptedException;
+ix. public final void wait(long ms,int ns)throws InterruptedException;
+x. public final native void notify();
+xi. public final native void notifyAll();
+
+
+i. public String toString();
+	
+	Object class toString() implementtion :-
+	
+	public String toString() {
+		return getClass().getName() + "@" +
+		Integer.toHexString(hashCode());
+	}
+	
+	main() {
+		Employee e = new Employee();
+		e.setName("Raju"");
+		e.setAge(45);
+		
+		System.out.println("Employee details are : " + e);   ///// internally e.toString() method called.
+	}
+
+
+> We can use this method to get string representation of an object.
+> Whenever we are try to print any object reference internally toString() method will be executed.
+> If our class doesn't contain toString() method then Object class toString() method will be executed.
+> To provide our own String representation we have to override toString() method in our class.
+> In String class, StringBuffer, StringBuilder, wrapper classes and in all collection classes toString() method is overridden for meaningful string representation.
+Hence in our classes also highly recommended to override toString() method.
+
+
+
+
+ii. public native int hashCode();
+
+>. For every object jvm will generate a unique number which is nothing but hashCode.
+>. Jvm will using hashCode while saving objects into hashing related data structures like HashSet, HashMap, and Hashtable etc.
+>. If the objects are stored according to hashCode searching will become very efficient (The most powerful search algorithm is hashing which will work based on hashCode).
+>. If we didn't override hashCode() method then Object class hashCode() method will be executed which generates hashCode based on address of the object but it doesn't mean hashCode represents address of the object.
+>. Based on our programming requirement we can override hashCode() method to generate our own hashcode.
+>. Overriding hashCode() method is said to be proper if and only if for every object we have to generate a unique number as hashcode for every object.
+
+
+Assignment :- Try different ways of overridding hashCode() method in your Student class.
+
+
+
+v. public final Class getClass();
+
+public static void main(String[] args ){
+	
+	Student s1 = new Student();
+	s1.getClass();          ///..........com.learning.Student 
+	
+	Vehicle v1 = new Vehicle();
+	v1.getClass();         ///...........com.learning.Vehicle
+	
+	///Car is a child of Vehicle
+	Vehicle v2 = new Car();
+	v2.getClass();         ////..........com.learning.Car
+	
+}
+This method returns runtime class definition of an object.
+
+-----------------------------------------------
+Another example
+
+public class Utility{
+	
+	public static void printRandomMessage(Object o){
+		//if Student object then print exam
+		//if Vehicle object then print JCB
+		//if Car object then print BMW.
+		if(o.getClass().getName() == "com.learning.Student"){
+			Sysout("exam");
+		}
+	}
+	
+}
+
+main(){
+	Student s1 = new Student();
+	
+	Vehicle v1 = new Vehicle();
+
+	Vehicle v2 = new Car();
+
+	Utility.printRandomMessage(s1);
+	Utility.printRandomMessage(v1);
+	Utility.printRandomMessage(v2);
+	
+}
+
+----------------------------------------------------------------------------------------------
+
+
+vi. protected void finalize() throws Throwable;
+
+main(){
+	
+	Student s1 = new Student("Archana", "Java");
+	Sysout(s1.getName());
+	
+	s1 = null ;     /// now the object of Student which was in memory is eligible for garbage collection.
+	
+	//Sysout(s1.getName());
+	
+}
+
+Class Student{
+
+protected void finalize() throws Throwable {
+	Sysout("Garbage collected");
+}
+
+}
+
+
+
+-----------------------------------------------------------------------
+iii. public boolean equals(Object o);
+
+> We can use this method to check equivalence of two objects.
+> If our class doesn't contain .equals() method then object class .equals() method will be executed which is always meant for reference comparison[address comparison]. i.e., if two references pointing to the same object then only .equals() method returns true .
+> == always compares references.
+> .equals method by-default compares references unless we override it in our class.
+
+
+
+
+When ever we are overriding .equals() method we have to consider the following
+things :
+1. Meaning of content comparison i.e., whether we have to check the names
+are equal (or) roll numbers (or) both are equal.
+2. If we are passing different type of objects (heterogeneous object) our
+.equals() method should return false but not ClassCastException i.e., we
+have to handle ClassCastException to return false.
+
+
+
+iv. protected native Object clone()throws CloneNotSupportedException;
+
+> The process of creating exactly duplicate object is called cloning.
+>. The main objective of cloning is to maintain backup purposes.(i.e., if something goes wrong we can recover the situation by using backup copy.)
+> We can perform cloning by using clone() method of Object class.
+protected native object clone() throws CloneNotSupportedException;
+
+class Test implements Cloneable
+{
+	int i=10;
+	int j=20;
+	public static void main(String[] args)throws CloneNotSupportedException
+	{
+		Test t1=new Test();
+		Test t2=(Test)t1.clone();
+		t2.i=888;
+		t2.j=999;
+		System.out.println(t1.i+"---------------"+t1.j);
+		System.out.println(t2.i+"---------------"+t2.j);
+	}
+}
+
+ We can perform cloning only for Cloneable objects.
+ An object is said to be Cloneable if and only if the corresponding class
+implements Cloneable interface.
+ Cloneable interface present in java.lang package and does not contain any
+methods. It is a marker interface where the required ability will be provided
+automatically by the JVM.
+ If we are trying to perform cloning or non-clonable objects then we will get
+RuntimeException saying CloneNotSupportedException.
+
+
+Shallow cloning:
+1. The process of creating bitwise copy of an object is called Shallow Cloning .
+2. If the main object contain any primitive variables then exactly duplicate copies will be created in cloned object.
+3. If the main object contain any reference variable then the corresponding object won't be created just reference variable will be created by pointing to old contained object.
+4. By using main object reference if we perform any change to the contained object then those changes will be reflected automatically to the cloned object , by default Object class clone( ) meant for Shallow Cloning.
+
+
+
+class Cat {
+int j ;
+Cat(int j) {
+this.j=j ;
+}
+ }
+
+ class Dog implements Clonable {
+ Cat c ;
+ int i ;
+ Dog(Cat c , int i) {
+ this.c=c ;
+ this.i=i ;
+ }
+ public Object clone( ) throws CloneNotSupportedException {
+ return super.clone( );
+ }
+ }
+
+ class ShallowClone {
+ public static void main(String[ ] ar) {
+ Cat c=new Cat(20) ;
+ Dog d1=new Dog(c , 10) ;
+ System.out.println(d1.i +......+d1.j); // 10......20
+
+ Dog d2=(Dog)d1.clone( ) ;
+ d1.i=888 ;
+ d1.c.j=999 ;
+ System.out.println(d2.i +......+d2.j); // 10......999
+ }
+ }
+
+
+
+>Shallow cloning is the best choice , if the Object contains only primitive values.
+> In Shallow cloning by using main object reference , if we perform any change to the contained object then those changes will be reflected automatically in cloned copy.
+> To overcome this problem we should go for Deep cloning.
+
+
+Deep Cloning :
+
+1. The process of creating exactly independent duplicate object(including contained
+objects also) is called deep cloning.
+2. In Deep cloning , if main object contain any reference variable then the
+corresponding Object copy will also be created in cloned object.
+3. Object class clone( ) method meant for Shallow Cloning , if we want Deep
+cloning then the programmer is responsible to implement by overriding clone( )
+method.
+class Cat {
+int j ;
+Cat(int j) {
+this.j=j ;
+}
+}
+
+ class Dog implements Clonable {
+ Cat c ;
+ int i ;
+ Dog(Cat c , int i) {
+ this.c=c ;
+ this.i=i ;
+ }
+ public Object clone( ) throws CloneNotSupportedException {
+ Cat c1=new Cat(c.j) ;
+ Dog d1=new Dog(c1 , i) ;
+ return d1 ;
+ }
+ }
+
+ class DeepClone {
+ public static void main(String[ ] ar) {
+ Cat c=new Cat(20) ;
+ Dog d1=new Dog(c , 10) ;
+ System.out.println(d1.i +......+d1.c.j); // 10......20
+
+ Dog d2=(Dog)d1.clone( ) ;
+ d1.i=888 ;
+ d1.c.j=999 ;
+ System.out.println(d2.i +......+d2.c.j); // 10......20
+ }
+ }
+
+
+In Deep cloning by using main Object reference if we perform any change to the
+contained Object those changes won't be reflected to the cloned object.
+Example:
+Test t1=new Test();
+Test t2=(Test)t1.clone();
+System.out.println(t1==t2); //false
+System.out.println(t1.hashCode()==t2.hashCode()); //false
+
+Which cloning is best ?
+If the Object contain only primitive variable then Shallow Cloning is the best choice ,
+If the Object contain reference variables then Deep cloning is the best choice.
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+
+String Notes :-
+
+Generally, String is a sequence of characters. But in Java, string is an object that represents a sequence of characters. The java.lang.String class is used to create a string object.
+
+"" --> String
+" " ---> String 
+"a"  ---> String 
+"abc" --> String 
+"jhjgf 6564n,nmb b" -- String
+
+String literal --> any sequence of chracters in double quotes "" is called string literals.
+
+How to create String :-
+
+String name = "Rahul" ;
+String name2 = "Rahul" ;
+String name4 = new String("Rahul");
+String name1 = new String("Ram");
+String name3 = "Ram" ;
+
+
+
+There are two ways to create String object:
+
+1. By string literal
+
+
+Each time you create a string literal, the JVM checks the "string constant pool" first. If the string already exists in the pool, a reference to the pooled instance is returned. If the string doesn't exist in the pool, a new string instance is created and placed in the pool. 
+
+
+2. By new keyword
+
+Almost every method, applied to a String object in order to modify it, creates a new String object. So, where do these String objects go? Well, these exist in memory, and one of the key goals of any programming language is to make efficient use of memory.
+
+As applications grow, it’s very common for String literals to occupy a large area of memory, which can even cause redundancy. So, in order to make Java more efficient, the JVM sets aside a special area of memory called the “String constant pool”.
+
+When the compiler sees a String literal, it looks for the String in the pool. If a match is found, the reference to the new literal is directed to the existing String and no new String object is created. The existing String simply has one more reference. Here comes the point of making String objects immutable:
+
+In the String constant pool, a String object is likely to have one or many references. If several references point to the same String without even knowing it, it would be bad if one of the references modified that String value. That’s why String objects are immutable.
+
+Well, now you could say, what if someone overrides the functionality of the String class? That’s the reason that the String class is marked final so that nobody can override the behavior of its methods.
+
+
+
+String class :-
+java.lang
+
+
+1. public char charAt(int index);   //// abcskdkjndhj   
+2. public String concat(String str);   ///// s1 = "Hello" , s1.concat(" World !!"); 
+3. public boolean equals(Object o);
+4. public boolean equalsIgnoreCase(String s);
+5. public String substring(int begin);
+6. public String substring(int begin, int end);
+7. public int length();
+8. public String replace(char old, char new);
+9. public String toLowerCase();
+10.public String toUpperCase();
+11. public String trim();
+12. public int indexOf(char ch);
+13. public int lastIndexOf(Char ch
+isBlank()
+isEmpty()
+split()
+static String valueOf()
+
+
+
+
+3. public boolean equals(Object o);
+
+
+String name1 = new String("John");
+String name2 = new String("John");
+
+if(name1.equals(name2)){
+	Sysout("Both names are equal");
+}else{
+	Sysout("Both names are different");
+}
+
+String name3 = new String("johN");
+
+if(name1.equalsIgnoreCase(name3)){
+	Sysout("Both names are equal");
+}else{
+	Sysout("Both names are different");
+}
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+StringBuffer:-
+1. If the content will change frequently then String should not be used because for every change a new object will be created internally.
+2. To handle this type of requirement we should go for StringBuffer concept.
+3. The main advantage of StringBuffer over String is, all required changes will be performed in the existing object only instead of creating new object.(won't create new object).
+
+
+Constructors :-
+1. StringBuffer sb=new StringBuffer();
+Creates an empty StringBuffer object with default initialcapacity "16".
+Once StringBuffer object reaches its maximum capacity a new StringBuffer object will be created with
+Newcapacity=(currentcapacity+1)*2.
+
+Example:
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer();
+		System.out.println(sb.capacity());//16
+		sb.append("abcdefghijklmnop");
+		System.out.println(sb.capacity());//16
+		sb.append("q");
+		System.out.println(sb.capacity());//34
+	}
+}
+
+
+2. StringBuffer sb = new StringBuffer(int initialcapacity);
+
+Creates an empty StringBuffer object with the specified initial capacity.
+
+Example:
+class StringBufferDemo {
+	public static void main(String[] args) {
+			StringBuffer sb=new StringBuffer(19);
+			System.out.println(sb.capacity());//19
+	}
+}
+
+
+3. StringBuffer sb=new StringBuffer(String s);
+
+Creates an equivalent StringBuffer object for the given String with capacity=s.length()+16;
+
+Example:
+class StringBufferDemo {
+	public static void main(String[] args) {
+			StringBuffer sb=new StringBuffer("ashok");
+			System.out.println(sb.capacity());//21
+	}
+}
+
+
+Important Methods of StringBuffer :- 
+
+1. public int length();
+	Return the no of characters present in the StringBuffer.
+
+	StringBuffer sb = new StringBuffer();
+	sb.append("abc");
+	sb.length();      ///3
+	sb.capacity();    ///16
+
+2. public int capacity();
+	Returns the total no of characters StringBuffer can accommodate(hold).
+	
+3. public char charAt(int index);
+	It returns the character located at specified index.
+Example:
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer("absjhsjskghj,jgh");
+		System.out.println(sb.length());//16
+		System.out.println(sb.capacity());//32
+		System.out.println(sb.charAt(14));//g
+		System.out.println(sb.charAt(30));//RE :StringIndexOutofBoundsException
+	}
+}
+
+4. public void setCharAt(int index, char ch);
+	To replace the character locating at specified index with the provided character.
+
+Example:
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer("ashokkumar");
+		sb.setCharAt(8,'A');
+		System.out.println(sb);
+	}
+}
+
+
+5. public StringBuffer append(String s);
+6. public StringBuffer append(int i);
+7. public StringBuffer append(long l);
+8. public StringBuffer append(boolean b); All these are overloaded methods.
+9. public StringBuffer append(double d);
+10. public StringBuffer append(float f);
+11. public StringBuffer append(int index, Object o);
+
+
+Example:
+ class StringBufferDemo {
+	public static void main(String[] args) {
+			StringBuffer sb=new StringBuffer();
+			sb.append("PI value is :");
+			sb.append(3.14);
+			sb.append(" this is exactly ");
+			sb.append(true);
+			System.out.println(sb);//PI value is :3.14 this is exactly true
+	}
+ }
+ 
+ 
+12. public StringBuffer insert(int index,String s);
+13. public StringBuffer insert(int index,int i);
+14. public StringBuffer insert(int index,long l);
+15. public StringBuffer insert(int index,double d); All are overloaded methods
+16. public StringBuffer insert(int index,boolean b);
+17. public StringBuffer insert(int index,float f);
+18. public StringBuffer insert(int index, Object o);
+
+To insert at the specified location.
+
+Example :
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer("abcdefgh");
+		sb.insert(2, "xyz");
+		sb.insert(11,"9");
+		System.out.println(sb);//abxyzcdefgh9
+	}
+}
+
+
+19. public StringBuffer delete(int begin,int end);
+	To delete characters from begin index to end n-1 index.
+
+20. public StringBuffer deleteCharAt(int index);
+	To delete the character locating at specified index.
+
+Example:-	
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer("saicharankumar");
+		System.out.println(sb);//saicharankumar
+		sb.delete(6,13);
+		System.out.println(sb);//saichar
+		sb.deleteCharAt(5);
+		System.out.println(sb);//saichr
+	}
+}	
+
+
+21. public StringBuffer reverse();
+
+Example :
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer("ashokkumar");
+		System.out.println(sb);//ashokkumar
+		System.out.println(sb.reverse());//ramukkohsa
+	}
+}
+
+
+22.public void setLength(int length);
+Consider only specified no of characters and remove all the remaining characters.
+Example:
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer("ashokkumar");
+		sb.setLength(6);
+		System.out.println(sb);//ashokk
+	}
+}
+
+
+23. public void trimToSize();
+To deallocate the extra allocated free memory such that capacity and size are equal.
+
+Example:
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer(1000);
+		System.out.println(sb.capacity());//1000
+		sb.append("ashok");
+		System.out.println(sb.capacity());//1000
+		sb.trimToSize();
+		System.out.println(sb.capacity());//5
+	}
+}
+
+
+24. public void ensureCapacity(int initialcapacity);
+	To increase the capacity dynamically(fly) based on our requirement.
+
+Example:
+class StringBufferDemo {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer();
+		System.out.println(sb.capacity());//16
+		sb.ensureCapacity(1000);
+		System.out.println(sb.capacity());//1000
+	}
+}
+
+Note :
+Every method present in StringBuffer is syncronized hence at a time only one thread is allowed to operate on StringBuffer object , it increases waiting time of the threads and creates performence problems , to overcome this problem we should go for StringBuilder.
+
+
+
+StringBuilder :- 
+
+String Vs StringBuffer Vs StringBuilder
+1. If the content is fixed and won't change frequently then we should go for String.
+2. If the content will change frequently but Thread safety is required then we should go for StringBuffer.
+3. If the content will change frequently and Thread safety is not required then we should go for StringBuilder.
+
