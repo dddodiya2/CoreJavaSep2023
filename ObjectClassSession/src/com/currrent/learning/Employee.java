@@ -1,11 +1,29 @@
 package com.currrent.learning;
 
-public class Employee {
+public class Employee implements Cloneable {
 
 	private String name;
 	private int age;
 	private double salary;
 	private String dept;
+	
+	
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		}
+		
+		if(!(o instanceof Employee) ) {
+			return false;
+		}
+		
+		Employee that = (Employee) o;
+		if (this.name == that.name && this.age == that.age 
+				&& this.salary == that.salary && this.dept == that.dept) {
+			return true;
+		}
+		return false;			
+	}
 	
 	
 	public Employee(String name, int age, double salary, String dept) {
@@ -44,6 +62,10 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [name=" + name + ", age=" + age + ", salary=" + salary + ", dept=" + dept + "]";
+	}
+	
+	public Employee clone() throws CloneNotSupportedException {
+		return (Employee) super.clone();
 	}
 	
 }
