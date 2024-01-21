@@ -334,6 +334,16 @@ Each time you create a string literal, the JVM checks the "string constant pool"
 
 2. By new keyword
 
+When a String object is created with new keyword , 2 objects are created :-
+  one in the SCP (if not exist) because it encountered a String literal and
+  second in heap memory with the content provided.
+  When ever we are using new operator compulsory a new object will be created on the
+Heap . There may be a chance of existing two objects with same content on the heap but
+there is no chance of existing two objects with same content on SCP . i.e., duplicate
+objects possible in the heap but not in SCP .
+
+
+
 Almost every method, applied to a String object in order to modify it, creates a new String object. So, where do these String objects go? Well, these exist in memory, and one of the key goals of any programming language is to make efficient use of memory.
 
 As applications grow, it’s very common for String literals to occupy a large area of memory, which can even cause redundancy. So, in order to make Java more efficient, the JVM sets aside a special area of memory called the “String constant pool”.
