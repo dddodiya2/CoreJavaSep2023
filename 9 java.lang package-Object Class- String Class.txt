@@ -373,9 +373,22 @@ java.lang
 11. public String trim();
 12. public int indexOf(char ch);
 13. public int lastIndexOf(Char ch
-isBlank()
-isEmpty()
-split()
+isBlank()  /// length of String = 0 then returs true else fals. -----> " " 
+isEmpty()  /// If string contains no characters or contains only whitespace then gives truue else false -----> " " --> false
+
+""  -> empty and blank
+" " --> blank but not empty.
+
+
+split()   --> 
+String str15 =  "ABC DEF GHI JKL MNO PQR STU VWX YZ" ;
+String[] strArrr =  str15.split(" ");
+
+
+String str16 =  "ABC;DEF;GHI;JKL;MNO;PQR;STU;VWX;YZ" ;
+String[] strAr16 =  str15.split(";");
+
+
 static String valueOf()
 
 
