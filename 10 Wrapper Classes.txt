@@ -1,0 +1,423 @@
+String str = "123 345 678 910 123 450 999";
+String[] strings = str.split(" ");   {"123", "345", "678",  "910", .. . .. }
+
+strings[0]    ---> "123"  --> if I want to convert in number then how to do it ?
+
+Integer i = new Integer(strings[0]);   This is correct
+
+
+
+
+boolean   - Boolean
+char      - Character
+byte      - Byte
+short     - Short   
+int       - Integer
+long      - Long
+float     - Float
+double    - Double 
+
+
+The main objectives of wrapper classes are:
+1. To wrap primitives into object form so that we can handle primitives also just like objects.
+2. To define several utility functions which are required for the primitives.
+
+Constructors :
+
+1. All most all wrapper classes define the following 2 constructors one can take corresponding primitive as argument and the other can take String as argument.
+
+
+	Integer i=new Integer(10);
+	Integer i=new Integer("10");
+	
+	Integer i1 = new Integer("Raju");   /// This will give number format Exception.
+
+Only flot has 3 constructors.
+	Float i=new Float(10.1f);
+	Float i=new Float("10.1f");
+	Float i=new Float(10.1);
+	
+	
+	 
+2. Character class defines only one constructor which can take char primitive as argument there is no String argument constructor.
+	Character ch=new Character('a');//valid
+	Character ch=new Character("a");//invalid
+
+
+4. Boolean class defines 2 constructors with boolean primitive and String arguments.
+If we want to pass boolean primitive the only allowed values are true, false where case should be lower case.
+	
+	Boolean b=new Boolean(true);
+	Boolean b=new Boolean(false);
+	Boolean b1=new Boolean(True);//C.E
+	Boolean b=new Boolean(False);//C.E
+	Boolean b=new Boolean(TRUE);//C.E
+	
+If we are passing String argument then case is not important and content is not important. If the content is case insensitive String of true then it is treated as true in all other cases it is treated as false.	
+	
+	Boolean b1=new Boolean("true");
+	Boolean b2=new Boolean("True");
+	Boolean b3=new Boolean("false");
+	Boolean b4=new Boolean("False");
+	Boolean b5=new Boolean("Ram");    // false
+	Boolean b6=new Boolean("TRUE");
+	System.out.println(b1);//true
+	System.out.println(b2);//true
+	System.out.println(b3);//false
+	System.out.println(b4);//false
+	System.out.println(b5);//false
+	System.out.println(b6);//true
+	
+	Boolean b1=new Boolean("yes");
+	Boolean b2=new Boolean("no");
+	System.out.println(b1);//false
+	System.out.println(b2);//false
+	
+	System.out.println(b1.equals(b2)) ;  //true
+	System.out.println(b1==b2);//false
+	
+	
+3. If the String is not properly formatted i.e., if it is not representing number then we will get runtime exception saying "NumberFormatException".	
+	
+	Float f = new Float("kgjfgfgh");   ///NumberFormatException.
+	
+
+4) In all wrapper classes toString() method is overridden to return its content.
+5) In all wrapper classes .equals() method is overridden for content compression.	
+
+Integer i1 = new Integer(10);
+Integer i2 = new Integer(10);
+
+i1==i2 ---> 
+i1.equals(i2)  --> true
+
+
+Static Utility methods provided by wrapper :
+
+1. valueOf() method :-
+
+public static Wrapper valueOf(String s);
+
+We can use valueOf() method to create wrapper object for the given primitive or String this method is alternative to constructor.
+Integer.valueOf(10);
+Integer.valueOf("10");   ---> Integer object
+
+Every wrapper class except Character class contains a static valueOf() method to create wrapper object for the given String.
+
+
+Every integral type wrapper class (Byte, Short, Integer, and Long) contains the following valueOf() method to convert specified radix string to wrapper object.
+
+public static wrapper valueOf(String s, int radixOrBase);
+
+public static void main(String[] args) {
+	Integer i=Integer.valueOf("100",2);
+	System.out.println(i);//4
+}
+
+
+
+
+2 xxxValue() :- (byteValue(), shortValue(), .......)
+
+Every number type wrapper class (Byte, Short, Integer, Long, Float, Double) containsthe following 6 xxxValue() methods to convert wrapper object to primitives.
+
+1)public byte byteValue()
+2)public short shortValue()
+3)public int intValue()
+4)public long longValue()
+5)public float floatValue()
+6)public double doubleValue();
+
+
+
+public static void main(String[] args)throws Exception {
+	Integer i=new Integer(130);
+	System.out.println(i.byteValue());//-126
+	System.out.println(i.shortValue());//130
+	System.out.println(i.intValue());//130
+	System.out.println(i.longValue());//130
+	System.out.println(i.floatValue());//130.0
+	System.out.println(i.doubleValue());//130.0
+}
+
+
+
+3) Character class contains charValue() method to convert Character object to char primitive.
+	public char charValue();
+
+Example:
+class WrapperClassDemo {
+	public static void main(String[] args) {
+		Character ch=new Character('a');
+		char c=ch.charValue();
+		System.out.println(c);//a
+	}
+}
+
+
+4)
+booleanValue() method:
+Boolean class contains booleanValue() method to convert Boolean object to boolean
+primitive.
+public boolean booleanValue( );
+
+Example:
+class WrapperClassDemo {
+	public static void main(String[] args) {
+		Boolean b=new Boolean("ashok");
+		boolean b1=b.booleanValue();
+		System.out.println(b1);//false
+	}
+}
+
+
+
+5)
+parseXxx() method :  (parseInt(), parseDouble().....)
+
+We can use this method to convert String to corresponding primitive.
+
+String "100" ----> Integer (Object)  ---> Constructor , Integer.valueOf("1000")
+
+String "100" ----> int (Object)   ---->  parseInt()
+
+
+Form1 :
+Every wrapper class except Character class contains a static parseXxx() method to
+convert String to corresponding primitive.
+public static primitive parseXxx(String s);
+
+Example:
+class WrapperClassDemo {
+	public static void main(String[] args) {
+		int i=Integer.parseInt("10");
+		boolean b=Boolean.parseBoolean("ashok");
+		double d=Double.parseDouble("10.5");
+		System.out.println(i);//10
+		System.out.println(b);//false
+		System.out.println(d);//10.5
+	}
+}
+
+
+
+Form 2:
+integral type wrapper classes(Byte, Short, Integer, Long) contains the following parseXxx() method to convert specified radix String form to corresponding primitive.
+
+public static primitive parseXxx(String s,int radix);
+
+The allowed range of redix is : 2 to 36
+
+Example:
+class WrapperClassDemo {
+	public static void main(String[] args) {
+		int i=Integer.parseInt("100",2);
+		System.out.println(i);//4
+	}
+}
+
+
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+
+//Assignment
+//Find the lowest number given out of the space seperated String"
+		
+String s10 = "12 45 67 89 45 78 99 12 0 -88 -100 100 500 1000 ";
+String s11 = "12, 45, 67, 89, 45, 78,  99, 12, 0, -88, -100, 100, 500, 1000 ";
+
+boxing   :- primitive        ------valueOf()----->  wrapper/object Type
+
+unboxing :- wrapper/object   ------xxxValue()-----> primitive
+
+
+
+
+autoboxing :- 
+autounboxing :- 
+
+
+
+Autoboxing and Autounboxing (1.5v):
+Until 1.4 version we can't provide wrapper object in the place of primitive and primitive
+in the place of wrapper object all the required conversions should be performed
+explicitly by the programmer.
+
+int iPrim = 10;
+Integer i = 10;   /// new Integer(10)
+
+
+int x = i ;    /// before 1.5  i.intValue();
+
+
+
+class AutoBoxingAndUnboxingDemo {
+public static void main(String[] args) {
+Boolean b=new Boolean(true);
+if(b) {
+System.out.println("hello");
+}
+}
+}
+
+
+
+
+Automatic conversion of primitive to wrapper object by compiler is called Autoboxing.
+Example :
+Integer i=10;
+[compiler converts "int" to "Integer" automatically by Autoboxing]
+After compilation the above line will become.
+Integer i=Integer.valueOf(10);
+That is internally Autoboxing concept is implemented by using valueOf() method.
+
+
+
+
+
+
+Autounboxing :
+
+automatic conversion of wrapper object to primitive by compiler is called
+Autounboxing.
+Example:
+Integer I=new Integer(10);
+Int i=I;
+[ compiler converts "Integer" to "int" automatically by Autounboxing ]
+After compilation the above line will become.
+Int i=I.intValue();
+That is Autounboxing concept is internally implemented by using xxxValue() method.
+
+
+
+
+A note on method overloading :-
+
+autoboxing : primitive ----> Wrapper type
+autounboxing : wrapper ----> primitive
+widening :     long <-- int     (larger primitive type variable can hold lower primitive data)  
+example :-
+int i =100;
+long l = i;
+
+
+
+Case 1:-
+
+public class Demo {
+
+	public void methodOne(Integer number){
+			System.out.println("Integer methodOne called");
+			...//////processing ////
+	}
+	public void methodOne(long l){
+			System.out.println("long methodOne called");
+			...//////processing ////
+	}
+	
+	public static void main(String[] args){
+		Demo d1 = new Demo();
+		
+		d1.methodOne(10);
+	}
+}
+
+Widening takes precedence.
+O/p :- long methodOne called
+
+
+Case 2:-
+
+public class Demo {
+
+	public void methodOne(int... i){
+			System.out.println("Integer methodOne called");
+			...//////processing ////
+	}
+	public void methodOne(long l){
+			System.out.println("long methodOne called");
+			...//////processing ////
+	}
+	
+	public static void main(String[] args){
+		Demo d1 = new Demo();
+		
+		d1.methodOne(10);
+	}
+}	
+
+
+Widening takes precedence.
+O/p:- long methodOne called
+
+
+
+Case 3:- 
+
+public class Demo {
+
+	public void methodOne(Integer number){
+			System.out.println("Integer methodOne called");
+			...//////processing ////
+	}
+	public void methodOne(int... i){
+			System.out.println("long methodOne called");
+			...//////processing ////
+	}
+	
+	public static void main(String[] args){
+		Demo d1 = new Demo();
+		
+		d1.methodOne(10);
+	}
+}
+
+Autoboxing takes precedence.
+O/p :- Integer methodOne called
+
+
+Note : While resolving overloaded methods compiler will always give the presidence in the following order :
+1. Widening
+2. Autoboxing
+3. Var-arg method.
+
+
+
+
+Case 4:- 
+
+
+public class Demo {
+
+	public void methodOne(Long number){
+			System.out.println("Long methodOne called");
+			...//////processing ////
+	}
+	
+	public static void main(String[] args){
+		Demo d1 = new Demo();
+		int a = 10;                                      widening             Autoboxing
+		d1.methodOne(a);                            int -------------> long ------------- > Long
+	}
+}
+
+Autoboxing followed by widening is allowed.
+
+Widening followed by Autoboxing is not allowed.
+
+
+
+
+
+
+
+0-9  -- 0 to 9
+a-z  -- 97 to 122
+A-Z  -- 65 to 90
+
+
+char var = '%' 
+
+if( (var >= '0' && var =< '9') || ( var >= 'a' && var <= 'z' ) || (var >= 'A' && var <= 'Z') )
+
