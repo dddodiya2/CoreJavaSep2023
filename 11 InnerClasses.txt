@@ -1,0 +1,335 @@
+Inner Classes :- 
+Class defined inside a class is called as inner class.
+
+Inner class should be decalred if there is situation that without existing outer class there no chance to exist inner class.
+(HAS-A) relationship.
+
+Types of Inner Classes in Java :- 
+
+1. Normal or Regular :-
+
+Any named class inside another class (without static modifier) are called normal or regular inner classes.
+
+class Outer
+{
+	class Inner
+		{
+		}
+}
+
+
+
+Inside inner class we can't declare static members. Hence it is not possible to declare main() method and we can't invoke inner class directly from the command prompt.
+
+
+Case 1:- Accessing inner class code from static area of outer class.
+
+Case 2:- Accessing inner class code from instance area of outer class.
+
+Case 3:- Accessing inner class code from outside of outer class.
+
+
+From inner class we can access all members of outer class (both static and nonstatic, private and non private methods and variables) directly.
+
+class Outer
+{
+	int x=10;
+	staticint y=20;
+	class Inner{
+		public void methodOne()
+		{
+			System.out.println(x);//10
+			System.out.println(y);//20
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		new Outer().new Inner().methodOne();
+	}
+}
+
+
+Within the inner class "this" always refers current inner class object. To refer current outer class object we have to use "outer class name.this".
+
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+Method local inner classes:
+> Sometimes we can declare a class inside a method such type of inner classes are called method local inner classes.
+> The main objective of method local inner class is to define method specific repeatedly required functionality.
+> Method Local inner classes are best suitable to meet nested method requirement.
+> We can access method local inner class only within the method where we declared it. That is from outside of the method we can't access. As the scope of method local inner classes is very less, this type of inner classes are most rarely used type of inner classes.
+
+class Test
+{
+	int i;
+	static int j ;
+	
+
+	public void methodOne()
+	{
+			class Inner
+			{
+				public void sum(int i,int j)
+				{
+					System.out.println("The sum:"+(i+j));
+				}
+			}
+			
+			Inner i= new Inner();
+			i.sum(10,20);
+			i.sum(100,200);
+			i.sum(1000,2000);
+	}
+	public static void main(String[] args)
+	{
+		new Test().methodOne();
+	}
+}
+
+
+> If we are declaring inner class inside instance method then we can access both static and non static members of outer class directly.
+> But if we are declaring inner class inside static method then we can access only static members of outer class directly and we can't access instance members directly.
+
+class Test
+{
+	int x=10;
+	staticint y=20;
+	public void methodOne()
+	{
+		class Inner
+		{
+			public void methodTwo()
+			{
+				System.out.println(x);//10
+				System.out.println(y);//20
+			}
+		}
+		
+		Inner i=new Inner();
+		i.methodTwo();
+	}
+	
+	public static void main(String[] args){
+		new Test().methodOne();
+	}
+}
+
+
+
+
+
+3} Anonymous inner classes:
+> Sometimes we can declare inner class without name such type of inner classes are called anonymous inner classes.
+> The main objective of anonymous inner classes is "just for instant use".
+> There are 3 types of anonymous inner classes
+1. Anonymous inner class that extends a class.
+2. Anonymous inner class that implements an interface.
+3. Anonymous inner class that defined inside method arguments.
+
+
+
+Note: Inside Anonymous inner classes we can take or declare new methods but outside of anonymous inner classes we can't call these methods directly because we are depending on parent reference.[parent reference can be used to hold child class object but by using that reference we can't call child specific methods]. These methods just for internal purpose only.
+
+
+A) Anonymous inner class that extends a class: 
+com.learning3 example
+	
+package com.learning3;
+
+public class DiscountClass {
+	
+	public void calculateDiscount(double price, double percentDisc) {
+		System.out.println("Discount class method called");
+		System.out.println("The discount is : " + (price * percentDisc/100 ) );
+		
+	}
+	
+}
+
+
+package com.learning3;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		DiscountClass dc = new DiscountClass();
+		
+		double priceOfLaptop = 50000.0 ;
+		double percentDisc = 10.0 ;
+		
+		dc.calculateDiscount(priceOfLaptop, percentDisc);
+		
+		
+		//LAPTOP 			% +  Extra 2000 Discount
+		//Mobile 			% +  Extra 500 Discount
+		//WASHINGMACHINE 	% +  Extra 1000 Discount
+		
+		DiscountClass laptopDiscClass = new DiscountClass() {
+			public void calculateDiscount(double price, double percentDisc) {
+				System.out.println("Anonyous inner class method called");
+				System.out.println("The discount is : " + ( (price * percentDisc/100 ) + 2000.0) );
+			}
+		};
+		
+	
+		laptopDiscClass.calculateDiscount(priceOfLaptop, percentDisc);
+		
+		System.out.println(dc.toString());
+		System.out.println(laptopDiscClass.toString());
+		
+	
+		
+	}
+
+}
+
+
+
+B) Anonymous inner class that implements an interface.
+com.learning4 example
+package com.learning4;
+
+public interface DiscountInterface {
+
+	public void calcDisc(double price, double percDisc);
+	
+}
+
+
+package com.learning4;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+		DiscountInterface i = new DiscountInterface() {
+			
+			public void calcDisc(double price, double percDisc) {
+				System.out.println("The discount amount is : " + (price*percDisc/100) );
+			}
+			
+		};
+		
+		double price = 60000.0;
+		double disc = 12.0;
+		
+		i.calcDisc(price, disc);
+		
+		
+	}
+
+}
+
+
+
+C) Anonymous inner class that defined inside method arguments.
+
+
+package com.learning4;
+
+public class Main2 {
+
+	public static void main(String[] args) {
+
+		/*
+		  DiscountInterface i = new DiscountInterface() { public void calcDisc(double
+		  price, double percDisc) { System.out.println("The discount amount is : " +
+		  (price * percDisc / 100)); } };
+		 */
+
+		double price = 60000.0;
+		double disc = 12.0;
+
+		doSomeWork(new DiscountInterface() {
+			public void calcDisc(double price, double percDisc) {
+				System.out.println("The discount amount is : " + (price * percDisc / 100));
+			}
+		}, price, disc);
+
+	}
+
+	public static void doSomeWork(DiscountInterface d, double price, double percDisc) {
+
+		d.calcDisc(price, percDisc);
+
+	}
+
+}
+
+
+
+
+Static Inner Classes :-
+
+> Sometimes we can declare inner classes with static modifier such type of inner classes are called static nested classes.
+> In the case of normal or regular inner classes without existing outer class object there is no chance of existing inner class object.
+i.e., inner class object is always strongly associated with outer class object.
+> But in the case of static nested class without existing outer class object there may be a chance of existing static nested class object.
+i.e., static nested class object is not strongly associated with outer class object.
+
+
+class Test
+{
+	
+	static int i ;
+	
+	public static void testOne(){
+	}
+
+	static class Nested
+	{
+		public void methodOne()
+		{
+			System.out.println("nested class method");
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		Test.Nested t=new Test.Nested();
+		t.methodOne();
+		Test.i ;
+		Test.testOne();
+		Test.Nested........
+	}
+}
+
+
+
+> From the normal inner class we can access both static and non static members of outer class but from static nested class we can access only static members of outer class.
+
+class Test
+{
+	int x=10;
+	static int y=20;
+	
+	static class Nested
+	{
+		public void methodOne()
+		{
+			System.out.println(x);//C.E:non-static variable x cannot be referenced from a static area 
+			System.out.println(y);
+		}
+	}
+}
+
+
+
+-----------------------------------------------------------------------------------------------------
+1} Comparisions between Normal/Reguar inner class vs static inner class.(static nested class)
+
+
+Note :- 
+Different possible combinations :-
+
+1> Class inside a Class.
+2> Interface inside a Class.
+3> Class inside a interface.
+4> Interface inside a interface.
+
+

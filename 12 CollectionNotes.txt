@@ -1,0 +1,869 @@
+String[] stundentName = new String[10];
+Student[] students = new Student[10];
+students[0] =  ... 
+students[1] =  ...
+
+
+
+students[9] =  ...
+
+
+
+
+Arrays are Fixed in Size that is Once we created an Array there is No Chance of Increasing OR Decreasing Size based on Our Requirement.
+
+Arrays Concept is Not implemented based on Some Standard Data Structure, so utility methods Support is Not Available. Hence for Every Requirement we have to write the Code Explicitly which Increases Complexity of the Programming.
+
+To overcome these problem Collection Framework is introduced.
+
+Advantages Of Collections:
+1) Collections are Growable in Nature. That is based on Our Requirement we can Increase OR Decrease the Size.
+2) Collections can Hold Both Homogeneous and Heterogeneous Elements.
+3) Every Collection Class is implemented based on Some Standard Data Structure.Hence for Every Requirement Readymade Method Support is Available. Being a Programmer we have to Use those Methods and we are Not Responsible to Provide Implementation
+
+
+Collection :-
+If we want to Represent a Group of Objects as a Single Entity then we should go for Collection.
+
+Collection Framework :-
+defines Several Classes and Interfaces which can be used to Represent a Group of Objects as a Single Entity.
+
+All the collection interfaces and classes are defined in java.util.
+
+
+Key Interfaces of Collection Framework :-
+
+1) Collection(I) :-
+>	The Collection interface is the root interface of the Java collections framework.
+>	To Represent a Group of Individual Objects as a Single Entity then we should go for Collection Interface.
+>	Collection Interface defines the Most Common Methods which are Applicable for any Collection Objects.
+ 
+ The following is the List of the Methods Present Inside Collection Interface.
+i) boolean add(Object o)
+ii) boolean addAll(Collection c)
+iii) boolean remove(Object o)
+iv) boolean removeAll(Collection c)
+v) boolean retainAll(Collection c): To Remove All Objects Except those Present in c.
+vi) void clear()
+vii) boolean contains(Object o)
+viii) boolean containsAll(Collection c)
+ix) boolean isEmpty()
+x) int size()
+xi) Object[] toArray()
+xii) Iterator iterator()
+
+
+
+2) List(I) :-
+> It is the Child Interface of Collection.
+> If requirement is to represent a group of individual objects where duplicates are allowed and insertion Order needs to be preserved. Then we should go for List.
+List Interface Defines the following methods:-
+i) void add(int index, Object o)
+ii) boolean addAll(int index, Collection c)
+iii) Object get(int index)                      ----> a[10]  ---> a.get(10);
+iv) Object remove(int index)
+v) Object set(int index, Object newObj):To Replace the Element Present at specified Indexwith provided Object and Returns Old Object.
+vi) int indexOf(Object o):Returns Index of 1st Occurrence of 'o'
+vii) int lastIndexOf(Object o)
+viii) ListIterator listIterator();
+
+
+
+2.1) ArrayList(C) :- 
+> 	It is the implementation class of List interface.
+>	The Underlying Data Structure for ArrayList is Resizable Array OR Growable Array.
+>	Duplicate Objects are allowed.
+>	Insertion Order is Preserved.
+>	Heterogeneous Objects are allowed.
+>	null Insertion is Possible.
+> 	ArrayList is initialized by the size. However, the size is increased automatically if the collection grows or shrinks if the objects are removed from the collection.
+> 	ArrayList can not be used for primitive types, like int, char, etc. We need a wrapper class for such cases.
+
+
+Load Factor :-
+The load factor is the measure that decides when to increase the capacity of the ArrayList. The default load factor of an ArrayList is 0.75f. For example, current capacity is 10. So, loadfactor = 10*0.75=7 while adding the 7th element array size will increase.
+
+
+> If ArrayList Reaches its Max Capacity(based on Load Factor) then a New ArrayList Object will be Created with
+		new_Capacity = (Current Capacity * 3/2) + 1
+
+
+Constructors of ArrayList class :-
+A) ArrayList l = new ArrayList();
+> Creates an Empty ArrayList Object with Default Initial Capacity 10.
+> If ArrayList Reaches its Max Capacity(based on Load Factor) then a New ArrayList Object will be Created with
+		new_Capacity = (Current Capacity * 3/2) + 1
+
+B) ArrayList l = new ArrayList(int initialCapacity);
+> Creates an Empty ArrayList Object with specified Initial Capacity.
+
+C) ArrayList l = new ArrayList(Collection c);
+> Creates an Equalent ArrayList Object for the given Collection Object.
+> This Constructor Meant for Inter Conversion between Collection Objects.
+
+
+Look at the ArrayList Definition :-
+
+ArrayList class implements Serializable, Cloneable, 
+Iterable<E>, Collection<E>, List<E>, RandomAccess interfaces.
+
+Important Note :- 
+	Generally collections are used to hold and transfer Data (Objects) from one location to other location.
+	To Provide Support for this Requirement Every Collection Class Implements Serializable and Cloneable Interfaces.
+	
+Note that ArrayList also implements RandomAccess interface.
+This interface is present in java.util package. This is marker interface. Implementing this means we can Access any Random Element with the Same Speed.
+Marker interfaces are the ones which does not contain any methods.
+
+Therefore ArrayList is best suitable if our frequent operations is retrieval operation.
+
+General Note :-
+Synchronized and non-synchronized ?
+Synchronized basically means that only one thread can access methods of that particular class at any given time. StringBuffer is an example of a synchronized class. A Synchronized class is a thread-safe class.
+
+Non-Synchronized means that two or more threads can access the methods of that particular class at any given time. StringBuilder is an example of a non-synchronized class. Generally, a non-synchronized class is not thread-safe.
+
+
+All collection classes are by default non-synchronized meaning not thread-safe.
+
+By Default ArrayList Object is Non- Synchronized but we can get Synchronized Version
+ArrayList Object by using the following Method of Collections Class.
+		List l = Collections.synchronizedList(al);
+l - Synchronized Version
+al - Non-Synchronized Version
+
+
+ArrayList is Worst Choice if Our Frequent Operation is Insertion OR Deletion in the Middle. Because it requires Several Shift Operations Internally.
+
+Iterating over a ArrayList and enhanced for-each loop.
+
+
+2.2) LinkedList(C) :-
+
+> The Underlying Data Structure is Double LinkedList.
+> Insertion Order is Preserved.
+> Duplicate Objects are allowed.
+> Heterogeneous Objects are allowed.
+> null Insertion is Possible.
+> Implements Serializable and Cloneable Interfaces but Not RandomAccessInterface.
+> Best Choice if Our Frequent Operation is Insertion OR Deletion in the Middle.
+> Worst Choice if Our Frequent Operation is Retrieval.
+
+Constructors:
+1) LinkedList l = new LinkedList(); Creates an Empty LinkedList Object.
+2) LinkedList l = new LinkedList(Collection c);
+Creates an Equivalent LinkedList Object for the given Collection.
+
+LinkedList Class Defines the following 6 Specific Methods.
+1) void addFirst(Object o)
+2) void addLast(Object o)
+3) Object getFirst()
+4) Object getLast()
+5) Object removeFirst()
+6) Object removeLast()
+
+
+Assignment -- Create a class called StackImpl to behave as stack data structure.(push(), pop(), peek(), size()).
+
+Similarly for QueueImpl  .
+
+
+
+
+Iterator and ListIterator :-
+
+A} Iterator(I) :- 
+>	We use it to iterate over collection meaning to get the objects from collection , one by one.
+>   It can be used with any collection object.
+>   It can be used to perform read as well as remove operation.
+
+> How to get an iterator object :- by calling iterator() method on collection object.  
+Collection  col ;
+
+Iterator itr =  col.iterator();
+
+Methods provided by Iterator interface :-
+
+1) public boolean hasNext();
+2) public Object next();
+3) public void remove();
+
+
+Limitations :-
+> we can not add new object to the collection also we cannot replace element in collection.
+> We do not have capability to move backwards in collection.
+
+
+B} ListIterator(I) :- 
+> ListIterator is the Child Interface of Iterator.
+> By using ListIterator we can Move Either to the Forward Direction OR to the Backward Direction. That is it is a Bi-Directional Cursor.
+> By using ListIterator we can Perform Addition of New Objects and Replacing existing Objects. In Addition to Read and Remove Operations.
+> We can Create ListIterator Object by using listIterator() on List object.
+
+List l ;
+ListIterator lItr = l.listIterator();
+
+Methods:-
+> All methods of Iterator.
+public boolean hasNext()
+public Object next()
+public int nextIndex()
+
+
+public boolean hasPrevious()
+public Object previous()
+public int previousIndex()
+
+public void remove()
+public void set(Object new)
+public void add(Object new)
+
+
+
+
+
+
+---------------------------------------------------------------------------------
+Legacy class :-
+2.3) Vector(C) :- 
+> The Underlying Data Structure is Resizable Array OR Growable Array.
+> Insertion Order is Preserved and Duplicate Objects are allowed.
+> Heterogeneous Objects are allowed.
+> Implements Serializable, Cloneable and RandomAccess interfaces.
+> Every Method Present Inside Vector is Synchronized and Hence Vector Object is Thread Safe.
+> Vector is the Best Choice if Our Frequent Operation is Retrieval.
+> Worst Choice if Our Frequent Operation is Insertion OR Deletion in the Middle.
+
+
+
+Constructors :-
+A) Vector v = new Vector();
+	Creates an Empty Vector Object with Default Initial Capacity 10.
+	Once Vector Reaches its Max Capacity then a New Vector Object will be Created with (New Capacity = Current Capacity * 2 ).
+B) Vector v = new Vector(int initialCapacity);
+C) Vector v = new Vector(int initialCapacity, int incrementalCapacity);
+D) Vector v = new Vector(Collection c);
+
+
+Methods :- 
+>  add(Object o) 			-> Collection
+>  add(int index, Object o) -> List
+>  addElement(Object o) 	-> Vector
+
+> remove(Object o) 				-> Collection
+> removeElement(Object o) 		-> Vector
+> remove(int index) 			-> List
+> removeElementAt(int index) 	-> Vector
+> clear() 						-> Collection
+> removeAllElements() 			-> Vector
+
+
+> Object get(int index)       -> List
+> Object elementAt(int index) -> Vector
+> Object firstElement()       -> Vector
+> Object lastElement()        -> Vector
+
+> int size()
+> int capacity()
+> Enumeration element()
+
+Note on Enumeration:
+> We can Use Enumeration to get Objects One by One from the Collection.
+> We can Create Enumeration Object by using elements().
+public Enumeration elements();
+
+	Enumeration e = v.elements()   ----> v is vector object.
+	
+Methods of Enumeration :-
+i) public boolean hasMoreElements();
+ii) public Object nextElement();	
+
+Enumeration is only applicable to legacy classes and thus Iterator came in picture.
+
+
+Assignement :- List down the difference between Vector and ArrayList.
+Assignement :- List down the difference between LinkedList and ArrayList.
+
+----------------------------------------------------------------------------------
+
+2.3.1) Stack (C) :-
+> Child of vector class.
+> designed for LIFO use cases.
+
+Constructor :-
+	Stack s = new Stack();
+
+Methods:
+A) Object push(Object o); To Insert an Object into the Stack.
+B) Object pop(); To Remove and Return Top of the Stack.
+C) Object peek(); To Return Top of the Stack without Removal.
+D) boolean empty(); Returns true if Stack is Empty
+E) int search(Object o);Returns Offset if the Element is Available Otherwise Returns -1.
+
+
+----------------------------------------------------------------------------------
+
+
+List out comparisions between ArrayList and Vector.
+
+
+----------------------------------------------------------------------------------
+
+
+3) Set(I) :- 
+> Its the child of Collection interface.
+> When the requrement is such that , we want to store unique element (non-duplicates) and also we are not concerned about the insertion order then Set is the correct choice of collection.
+
+3.1) HashSet(C) :-
+> Internally the data structure used is Hash table.
+> Duplicates are not allowed and insertion order is also not preserved.
+> null insertion is possile only once.
+
+Constructors :-
+1) HashSet h = new HashSet();
+Creates an Empty HashSet Object with Default Initial Capacity 16 and Default Fill Ratio : 0.75.
+
+2) HashSet h = new HashSet(int initialCapacity);
+Creates an Empty HashSet Object with specified Initial Capacity and Default Fill Ratio : 0.75.
+
+3) HashSet h = new HashSet(int intinitialCapacity, float fillRatio);
+
+4) HashSet h = new HashSet(Collection c);
+
+
+3.2) LinkedHashSet(C) :-
+Duplicates no allowed but insertion order is preserved.
+
+
+
+4) SortedSet(I) :-
+> Its the child of Set interface.
+> The elements will be stored in sorted order.
+> Sorting order is by default the natural sorting order.(But we can have customised sorting as well )
+
+
+example SortedSet = [1, 5, 7, 8, 9, 100 ]
+
+Methods :-
+A) Object first(); Returns 1st Element of the SortedSet.
+B) Object last(); Returns Last Element of the SortedSet.
+C) SortedSet headSet(Object obj); Returns SortedSet whose Elements are < (7) Object. [1, 5]
+D) SortedSet tailSet(Object obj); Returns SortedSet whose Elements are >= Object. [7,8,9,100]
+E) SortedSet subSet(Object obj1, Object obj2); Returns SortedSet whose Elements are >= obj1 and <obj2.
+F) Comparator comparator();
+> Returns Comparator Object that Describes Underlying SortingTechnique.
+> If we are using Default Natural Sorting Order then we will get null.
+
+
+example NavigableSet ns = [1, 5, 7, 8, 9, 100 ]
+5)NavigableSet(I)
+> It is child of SortedSet(I).
+> provides several methods for navigation purpose:-
+a) floor(e); It Returns Highest Element which is <=e.   (ns.floor(7)  --> 7)
+b) lower(e); It Returns Highest Element which is <e.    (ns.lower(7)  --> 5 )
+c) ceiling(e); It Returns Lowest Element which is >=e.  (ns.ceiling(7)--> 7 )
+d) higher(e); It Returns Lowest Element which is >e.    (ns.higher(7)--> 8 )
+e) pollFirst(); Remove and Return 1st Element.             
+f) pollLast(); Remove and Return Last Element.
+g) descendingSet(); It Returns NavigableSet in Reverse Order.
+
+
+
+5.1) TreeSet(C) :-
+> Implementation class of NavigableSet(I).
+> underlying data structure is Balanced tree.
+
+Constructors :- 
+1) TreeSet t = new TreeSet();
+Creates an Empty TreeSet Object where all Elements will be Inserted According to Default
+Natural Sorting Order.
+2) TreeSet t = new TreeSet(Comparator c);
+Creates an Empty TreeSet Object where all Elements will be Inserted According to
+Customized Sorting Order which is described by Comparator Object.
+3) TreeSet t = new TreeSet(Collection c);
+4) TreeSet t = new TreeSet(SortedSet s);
+
+
+-----------------------------------------------------------------------------------------
+
+Comparable(I):- 
+
+
+Comparable Interface Present in java.lang Package and it contains Only One Method
+compareTo().
+
+public intcompareTo(Object o);
+obj1.compareTo(obj2)
+Returns –ve if and Only if obj1 has to Come Before obj2
+Returns +ve if and Only if obj1 has to Come After obj2
+Returns 0 if and Only if obj1 and obj2are Equal
+
+
+
+Eg:Code example
+Wheneverwe are Depending on Default Natural Sorting Order and if we are trying to Insert
+Elements then Internally JVM will Call compareTo() to Identify Sorting Order.
+Eg:Eg:Code example
+
+
+
+Note: If we are Not satisfied with Default Natural Sorting Order OR if Default
+Natural Sorting Order is Not Already Available then we can Define Our Own Sorting by using
+Comparator Object.
+publicintcompareTo(Object o);
+
+
+
+Comparator (I):
+This Interface Present in java.util Package.
+Methods: It contains 2 Methodscompare() and equals().
+
+public int compare(Object obj1, Object obj2);
+Returns –ve if and Only if obj1 has to Come Before obj2.
+Returns +ve if and Only if obj1 has to Come After obj2.
+Returns 0 if and Only if obj1 and obj2 are Equal.
+
+public boolean equals(Object o);
+Whenever we are implementing Comparator Interface Compulsory we should Provide Implementation for compare().
+Implementing equals() is Optional because it is Already Available to Our Class from Object Class through Inheritance.
+
+
+Comparable(I)
+Comparator(I)
+
+
+
+
+
+When we go for Comparable and When we go for Comparator:
+Comparable Vs Comparator:
+> For Predefined Comparable Classes (Like String) Default Natural Sorting Order is Already
+Available. If we are Not satisfied with that we can Define Our Own Sorting by Comparator
+Object.
+> For Predefine Non- Comparable Classes (Like StringBuffer) Default Natural Sorting Order
+is Not Already Available. If we want to Define Our Own Sorting we can Use Comparator
+Object.
+> For Our Own Classes (Like Employee) the Person who is writing Employee Class he is
+Responsible to Define Default Natural Sorting Order by implementing Comparable
+Interface.
+> The Person who is using Our Own Class if he is Not satisfied with Default Natural Sorting
+Order he can Define his Own Sorting by using Comparator Object.
+> If he is satisfied with Default Natural Sorting Order then he can Use Directly Our Class.
+
+
+Assignemnts :- 
+1. Write a Program to Insert Integer Objects into the TreeSet where Sorting Order is Descending Order.
+
+TreeSet<Integer> s1 = new TreeSet<Integer>();
+
+2. Write a Program to Insert String Objects into the TreeSet where the Sorting Order is of Reverse of Alphabetical Order.
+
+3. Write a Program to Insert String objects into the TreeSet where Sorting Order is Increasing Length Order. If 2 Objects having Same Length then Consider their Alphabetical Order:
+
+aa
+cc
+bbbb
+dd
+a
+
+
+a aa cc dd bbbb 
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+Queue(I) :-
+
+> Queue is a Child Interface of Collection.
+> If we want to Represent a Group of Individual Objects Prior to processing then we should go for Queue.
+> From 1.5 Version onwards LinkedList also implements Queue Interface.
+> Usually Queue follows FIFO Order. But Based on Our Requirement we can Implement Our Own Priorities Also (PriorityQueue).
+> LinkedList based Implementation of Queue always follows FIFO Order.
+
+Methods of Queue :- 
+1) boolean offer(Object o); To Add an Object into the Queue.
+2) Object peek(); To Return Head Element of the Queue.
+					If Queue is Empty then this Method Returns null.
+3) Object element(); To Return Head Element of the Queue.
+					If Queue is Empty then this Method raises RE: NoSuchElementException
+4) Object poll(); To Remove and Return Head Element of the Queue.
+				 If Queue is Empty then this Method Returns null.
+5) Object remove(); To Remove and Return Head Element of the Queue.
+					If Queue is Empty then this Method raise RE: NoSuchElementException.
+
+
+
+PriorityQueue(C) :
+> This is a Data Structure which can be used to Represent a Group of Individual Objects Prior to processing according to Some Priority.
+> The Priority Order can be Either Default Natural Sorting Order OR Customized Sorting Order specified by Comparator Object.
+> Duplicate objects are Not Allowed.
+> Insertion Order is Not Preserved and it is Based on Some Priority.
+> null Insertion is Not Possible Even as 1st Element Also.
+
+Constructors:
+1) PriorityQueue q = new PriorityQueue();
+	Creates an Empty PriorityQueue with Default Initial Capacity 11 and all
+	Objects will be Inserted according to Default Sorting Order(iff ).
+2) PriorityQueue q = new PriorityQueue(int initialcapacity);
+3) PriorityQueue q = new PriorityQueue(int initialcapacity, Comparator c);
+4) PriorityQueue q = new PriorityQueue(SortedSet s);
+5) PriorityQueue q = new PriorityQueue(Collection c);
+
+
+
+
+BlockingQueue(I):
+ It is the Child Interface of Queue. Present in java.util.Concurrent Package.
+ It is a Thread Safe Collection.
+ It is a specially designed Collection Not Only to Store Elements but also Supports Flow
+Control by Blocking Mechanism.
+ If Queue is Empty take() (Retrieval Operation) will be Blocked until Queue will be Updated
+with Items.
+ put() will be blocked if Queue is Full until Space Availability.
+ This Property Makes BlockingQueue Best Choice for Producer Consumer Problem. When
+One Thread producing Items to the Queue and the Other Thread consuming Items from the
+Queue.
+
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+Map(I) :- 
+K, V  
+> Represent a Group of Objects as Key- Value Pairs then we should go for Map.
+> Map also works for only object types (both keys and values).
+> Duplicate Keys are Not allowed. But Values can be Duplicated.
+> Each Key- Value Pair is called an Entry.
+
+Methods :-
+a)  Object put(Object key, Object value);
+To Add One Key- Value Pair.If the specified Key is Already Available then Old Value will be Replaced with New Value and Returns Old Value.
+
+b) void putAll(Map m)
+
+c) Object get(Object key)
+
+d) Object remove(Object key)
+
+e) boolean containsKey(Object key)
+
+f) boolean containsValue(Object value)
+
+g) boolean isEmpty()
+
+h) int size()
+
+i) void clear()
+
+j) Set keySet()
+
+11) Collection values()
+
+12) Set entrySet()
+
+Entry (I):
+> Each Key- Value Pair is Called One Entry.
+> Without existing Map Object there is No Chance of existing Entry Object.
+> Hence Interface Entry is Define Inside Map Interface.
+
+Methods of Entry(I) interface :-
+Object getKey();
+Object getValue();
+Object setValue(Object newObject);
+
+
+
+HashMap(C):
+> The Underlying Data Structure is Hashtable.
+> Duplicate Keys are Not Allowed. But Values can be Duplicated.
+> Heterogeneous Objects are allowed for Both Keys and Values.
+> Insertion Order is not preserved and it is based on hash code of the keys.
+> null Insertion is allowed for Key (Only Once) and allowed for Values (Any Number of
+Times)
+
+Constructors:
+1) HashMap m = new HashMap();
+Creates an Empty HashMap Object with Default Initial Capacity 16 and Default Fill Ratio 0.75
+2) HashMap m = new HashMap(int initialcapacity);
+3) HashMap m = new HashMap(int initialcapacity, float fillRatio);
+4) HashMap m = new HashMap(Map m);
+
+
+
+LinkedHashMap(C) :-
+> The underlying data structure used is hashtable as well as linkedList.
+> INsertion order is preserved.
+
+
+
+---------Hashmap internal working-------------------------
+
+https://www.geeksforgeeks.org/internal-working-of-hashmap-java/
+
+
+
+General contract associated with hashCode()  and equals() method
+The hashCode() method should return the same integer value for the same object for each calling of this method unless the value stored in the object is modified.
+If two objects are equal(according to equals() method) then the hashCode() method should return the same integer value for both the objects.
+But, it is not necessary that the hashCode() method will return the distinct result for the objects that are not equal (according to equals() method).
+
+
+
+hashCode() method: 
+hashCode() method is used to get the hash code of an object. hashCode() method of the object class returns the memory reference of an object in integer form. 
+It is possible to provide your implementation of hashCode().
+
+In HashMap, hashCode() is used to calculate the bucket and therefore calculate the index. 
+
+
+
+equals() method: This method is used to check whether 2 objects are equal or not. This method is provided by the Object class. You can override this in your class to provide your implementation. 
+HashMap uses equals() to compare the key to whether they are equal or not. If the equals() method return true, they are equal otherwise not equal. 
+
+
+
+Buckets: It bucket is one element of the HashMap array. It is used to store nodes. Two or more nodes can have the same bucket. In that case, a link list structure is used to connect the nodes. Buckets are different in capacity.
+
+
+Index Calculation in Hashmap
+
+The Hash code of the key may be large enough to create an array. hash code generated may be in the range of integer and if we create arrays for such a range, then it will easily cause outOfMemoryException. So we generate an index to minimize the size of the array. The following operation is performed to calculate the index. 
+
+index = hashCode(key) & (n-1).
+where n is the number of buckets or the size of the array. In our example, I will consider n as the default size which is 16. 
+
+
+Steps how hashMap works :-
+
+Step :-1 
+Initially Empty hashMap: Here, the hashmap’s size is taken as 16.                                                                       
+
+HashMap map = new HashMap();
+
+Step :- 2 
+Inserting Key-Value Pair: Putting one key-value pair in the above HashMap 
+
+	map.put(new Key("vishal"), 20);
+	
+	Step :- 2A - Calculate hash code of Key {“vishal”}. It will be generated as 118.
+	Step :- 2B - Calculate index by using index method it will be 6.
+	Step :- 2C - Create a node object as : 
+
+{
+  int hash = 118
+
+  // {"vishal"} is not a string but 
+  // an object of class Key
+  Key key = {"vishal"}
+
+  Integer value = 20
+  Node next = null
+}
+
+Place this object at index 6, if no other object is presented there.
+
+
+Inserting another Key-Value Pair: Now, putting the other pair that is, 
+
+
+map.put(new Key("sachin"), 30);
+
+
+Steps:
+Calculate hashCode of Key {“sachin”}. It will be generated as 115.
+Calculate index by using index method it will be 3.
+Create a node object as : 
+{
+  int hash = 115
+  Key key = {"sachin"}
+  Integer value = 30
+  Node next = null
+}
+
+
+
+In Case of collision: Now, putting another pair that is, 
+ map.put(new Key("vaibhav"), 40);
+ 
+Steps: 
+Calculate hash code of Key {“vaibhav”}. It will be generated as 118.
+Calculate index by using index method it will be 6.
+Create a node object as :
+
+{
+  int hash = 118
+  Key key = {"vaibhav"}
+  Integer value = 40
+  Node next = null
+}
+
+i. Place this object at index 6 if no other object is presented there.
+ii. In this case, a node object is found at index 6 – this is a case of collision.
+iii. In that case, check via the hashCode() and equals() method if both the keys are the same.
+iv. If keys are the same, replace the value with the current value.
+v. Otherwise, connect this node object to the previous node object via linked list and both are stored at index 6. 
+:
+
+-----------------------------------------------------------------
+
+WeakHashMap:
+It is Exactly Same as HashMap Except the following Difference.
+> In Case of HashMap, HashMap Dominates Garbage Collector. That is if Object doesn’t have any Reference Still it is Not Eligible for Garbage Collector if it is associated with HashMap.
+> But In Case of WeakHashMap if an Object doesn't contain any References then it is Always Eligible for GC Even though it is associated with WeakHashMap. That is Garbage Collector Dominates WeakHashMap.
+
+import java.util.HashMap;
+class WeakHashMapDemo {
+
+public static void main(String[] args) throws InterruptedException {
+	HashMap m = new HashMap();
+	Temp t = new Temp();
+	m.put(t, "Amruta");
+	System.out.println(m);
+	t = null;
+	System.gc();
+	Thread.sleep(5000);
+	System.out.println(m);
+	
+	
+	WeakHashMap m2 = new WeakHashMap();
+	Temp t2 = new Temp();
+	m.put(t2, "Amruta");
+	System.out.println(m2);
+	t2 = null;
+	System.gc();
+	Thread.sleep(5000);
+	System.out.println(m2);
+	
+}
+
+}
+
+class Temp {
+	
+	public String toString() {
+		return "temp";
+	}
+	
+	public void finalize() {
+		System.out.println("finalize() Called");
+	}
+}
+
+
+Note down the difference.
+
+
+---------------------------------------------------------------------------------------------
+
+IdentityHashMap :- 
+It is Exactly Same as HashMap Except the following Difference.
+> In HashMap JVM will Use .equals() to Identify Duplicate Keys, which is Meant for ContentComparision.
+> In IdentityHashMap JVM will Use == Operator to Identify Duplicate Keys, which is Meant for Reference Comparison.
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+Hashtable:
+> The Underlying Data Structure for Hashtable is Hashtable Only, it stores data in key-value pairs.
+> Duplicate Keys are Not Allowed. But Values can be Duplicated.
+> Insertion Order is Not Preserved and it is Based on Hashcode of the Keys.
+> Heterogeneous Objects are Allowed for Both Keys and Values.
+> null Insertion is Not Possible for Both Key and Values. Otherwise we will get Runtime Exception Saying NullPointerException.
+> Every Method Present in Hashtable is Synchronized and Hence Hashtable Object is Thread Safe.
+
+Constructors:
+1) Hashtable h = new Hashtable();
+Creates an Empty Hashtable Object with Default Initial Capacity 11 and
+Default Fill Ratio 0.75.
+2) Hashtable h = new Hashtable(int initialcapacity);
+3) Hashtable h = new Hashtable(int initialcapacity, float fillRatio);
+4) Hashtable h = new Hashtable(Map m);
+
+
+
+----------------------------------------------------------------------------
+
+Given a string s = "ahghdgshgsgjsghs"
+find how many times each character has occured and print them with their occurance number.
+eg. a - 1
+    d - 1
+	g - 5
+	
+	Single for loop iteration.
+	
+
+find the index of first repeated character in a string. ---> single iteration.	 --> Set
+
+----------------------------------------------------------------------------
+
+Utility Classes :-
+Collections class and Arrays class.
+
+
+
+1] Collections(C) :-
+
+Sorting :-
+1) public static void sort(List l);
+> To Sort Based on Default Sorting Order.
+> In this Case Compulsory List should contain Only Homogeneous and Comparable Objects. Otherwise we will get Runtime Exception Saying ClassCastException.
+> List should Not contain null Otherwise we will get NullPointerException.
+
+Collections.sort(l1);
+
+2) public static void sort(List l, Comparator c);
+To Sort Based on Customized Sorting Order.
+
+--> Assignemnet :- Declare a list of String and sort it according to alphabetical order. (Comparable)
+--> Assignemnet :- Declare a list of String and sort it according to reverse alphabetical order. (Comparator)
+
+
+Searching related methods :- 
+1) public static int binarySearch(List l, Object target);
+If we are Sorting List According to Natural Sorting Order then we have to Use this Method.
+
+2) public static int binarySearch(List l, Object target, Comparator c);
+If we are Sorting List according to Comparator then we have to Use this Method.
+
+Conclusions:
+> Internally the Above Search Methods will Use Binary Search Algorithm.
+> Before performing Search Operation Compulsory List should be Sorted. Otherwise we will get Unpredictable Results.
+> Successful Search Returns Index.
+> Unsuccessful Search Returns Insertion Point.
+> Insertion Point is the Location where we can Insert the Target Element in the SortedList.
+> If the List is Sorted according to Comparator then at the Time of Search Operation Also we
+should Pass the Same Comparator Object. Otherwise we will get Unpredictable Results.
+
+Reversing the Lists :-
+public static void reverse(List l);
+
+
+----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+
+
+Arrays(C) :- 
+
+* Sorting Elements of Array:
+1) public static void sort(primitive[] p); To Sort According to Natural Sorting Order.
+2) public static void sort(Object[] o); To Sort According to Default Sorting Order.
+3) public static void sort(Object[] o, Comparator c);To Sort According to Customized Sorting Order.
+
+* Searching the Elements of Array:
+1) public static int binarySearch(primitive[] p, primitive target);
+If the Primitive Array Sorted According to Natural Sorting Order then we have to Use this Method.
+2) public static int binarySearch(Object[] a, Object target);
+If the Object Array Sorted According to Natural Sorting Order then we have to Use this Method.
+3) public static int binarySearch(Object[] a, Object target, Comparator c);
+If the Object Array Sorted According to Comparator then we have to Use this Method.
+
+Conversion of Array to List:
+> Arrays Class contains asList() for this > public static List asList(Object[] a);
+> By using Array Reference if we Perform any Change Automatically that Change will be reflected to List Reference.
+> Similarly by using List Reference if we Perform any Change Automatically that Change will be reflected to Array.
+> By using List Reference if we are trying to Perform any Operation which Varies the Size then we will get Runtime Exception Saying UnsuportedOperationException.
+
+
+
