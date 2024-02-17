@@ -8,8 +8,6 @@ students[1] =  ...
 students[9] =  ...
 
 
-
-
 Arrays are Fixed in Size that is Once we created an Array there is No Chance of Increasing OR Decreasing Size based on Our Requirement.
 
 Arrays Concept is Not implemented based on Some Standard Data Structure, so utility methods Support is Not Available. Hence for Every Requirement we have to write the Code Explicitly which Increases Complexity of the Programming.
@@ -76,7 +74,7 @@ viii) ListIterator listIterator();
 >	Insertion Order is Preserved.
 >	Heterogeneous Objects are allowed.
 >	null Insertion is Possible.
-> 	ArrayList is initialized by the size. However, the size is increased automatically if the collection grows or shrinks if the objects are removed from the collection.
+> 	ArrayList is initialized by the size(dafault size 16). However, the size is increased automatically if the collection grows or shrinks if the objects are removed from the collection.
 > 	ArrayList can not be used for primitive types, like int, char, etc. We need a wrapper class for such cases.
 
 
@@ -392,7 +390,7 @@ Comparable(I):-
 Comparable Interface Present in java.lang Package and it contains Only One Method
 compareTo().
 
-public intcompareTo(Object o);
+public int compareTo(Object o);
 obj1.compareTo(obj2)
 Returns –ve if and Only if obj1 has to Come Before obj2
 Returns +ve if and Only if obj1 has to Come After obj2
@@ -410,13 +408,13 @@ Eg:Eg:Code example
 Note: If we are Not satisfied with Default Natural Sorting Order OR if Default
 Natural Sorting Order is Not Already Available then we can Define Our Own Sorting by using
 Comparator Object.
-publicintcompareTo(Object o);
+public int compareTo(Object o1, Object o2);
 
 
 
 Comparator (I):
 This Interface Present in java.util Package.
-Methods: It contains 2 Methodscompare() and equals().
+Methods: It contains 2 Methods compare() and equals().
 
 public int compare(Object obj1, Object obj2);
 Returns –ve if and Only if obj1 has to Come Before obj2.
@@ -430,8 +428,6 @@ Implementing equals() is Optional because it is Already Available to Our Class f
 
 Comparable(I)
 Comparator(I)
-
-
 
 
 
@@ -449,6 +445,56 @@ Interface.
 > The Person who is using Our Own Class if he is Not satisfied with Default Natural Sorting
 Order he can Define his Own Sorting by using Comparator Object.
 > If he is satisfied with Default Natural Sorting Order then he can Use Directly Our Class.
+
+
+
+
+public interface Comparable {
+	public int compareTo(Object obj2);
+}
+
+public class Employee implements Comparable {
+
+	int age;
+	String name;
+	int empId;
+	String dept;
+	
+	public int compareTo(Object obj2) {
+		
+		if(!obj2 instanceOf Employee) {
+			//Exception throw
+		}
+		Employee e2 = (Employee) obj2;
+		
+		///  this <---------> e2
+		
+		return this.name.compareTo(e2.name) ;
+		//return this.dept.compareTo(e2.dept);
+		//return this.age-e2.age;
+	}
+	
+}
+
+
+public class EmployeeComparator implements Comparator {
+
+	public void compare(Object o1, Object o2) {
+		Employee e1 = (Employee) o1;
+		Employee e2 = (Employee) o2;
+		
+		return e1.empId - e2.empId;
+	}
+
+}
+
+
+List<Employee> l = new ArrayList();
+
+l.sort();   ////Sorting based on name  ///comparable 
+
+
+l.sort(new EmployeeComparator())   ////Sorting based on empId -- comparator
 
 
 Assignemnts :- 
