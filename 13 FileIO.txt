@@ -1,0 +1,186 @@
+File:
+File f=new File("C:\Users\HP\Desktop\Divyesh\abc.txt");
+
+This line 1st checks whether abc.txt file is already available (or) not if it is already available then "f" simply refers that file.
+If it is not already available then it won't create any physical file just creates a java File object represents name of the file.
+
+Example:
+import java.io.*;
+class FileDemo
+{
+	public static void main(String[] args) throws IOException
+	{
+		File f=new File("cricket.txt");
+		System.out.println(f.exists());//false
+		f.createNewFile();
+		System.out.println(f.exists());//true
+	}
+}
+
+File class constructors:
+1. File f=new File(String name);
+Creates a java File object that represents name of the file or directory in current working directory.
+2. File f=new File(String subdirname,String name);
+Creates a File object that represents name of the file or directory present in specified sub directory.
+
+
+Write code to create a file named with demo.txt in current working directory.
+
+Program:
+import java.io.*;
+class FileDemo
+{
+	public static void main(String[] args)throws IOException
+	{
+	File f=new File("demo.txt");
+	f.createNewFile();
+	}
+}
+
+
+Write code to create a directory named with SaiCharan123 in current working directory and create a file named with abc.txt in that directory.
+
+Program:
+import java.io.*;
+class FileDemo
+{
+	public static void main(String[] args)throws IOException
+	{
+		File f1=new File("SaiCharan123");
+		f1.mkdir();
+		File f2=new File("SaiCharan123","abc.txt");
+		f2.createNewFile();
+	}
+}
+
+
+**Important methods of file class :-
+1. boolean exists(); Returns true if the physical file or directory available.
+
+2. boolean createNewFile(); 
+This method 1st checks whether the physical file is already available or not if it is already available then this method simply returns false without creating any file.
+If this file is not already available then it will create a new file and returns true
+
+3. boolean mkdir();
+This method 1st checks whether the directory is already available or not if it is already available then this method simply returns false without creating any directory.
+If this directory is not already available then it will create a new directory and returns true
+
+4. boolean isFile();
+Returns true if the File object represents a physical file.
+
+5. boolean isDirectory();
+Returns true if the File object represents a directory.
+
+6. String[] list();
+It returns the names of all files and subdirectories present in the specified directory.
+
+7. long length();
+Returns the no of characters present in the file.
+
+8. boolean delete();
+To delete a file or directory.
+
+
+Assignment :- 
+Write a program to display the names of all files and directories present in c:\\Demo_classes.
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+FileWriter:
+By using FileWriter object we can write character data to the file.
+
+
+Constructors:
+FileWriter fw=new FileWriter(String name);
+FileWriter fw=new FileWriter(File f);
+
+The above 2 constructors meant for overriding.
+
+Instead of overriding if we want append operation then we should go for the following 2 constructors.
+
+FileWriter fw=new FileWriter(String name,boolean append);
+FileWriter fw=new FileWriter(File f,boolean append);
+
+If the specified physical file is not already available then these constructors will create that file.
+
+
+Methods:
+1. write(int ch);
+To write a single character to the file.
+
+2. write(char[] ch);
+To write an array of characters to the file.
+
+3. write(String s);
+To write a String to the file.
+
+4. flush();
+To give the guarantee the total data include last character also written to the file.
+
+5. close();
+To close the stream.
+
+
+Example:
+import java.io.*;
+classFileWriterDemo
+{
+	public static void main(String[] args)throws IOException
+	{
+		FileWriter fw=new FileWriter("learning.txt",true);
+		fw.write(99);//adding a single character
+		fw.write("Java Sessions");
+		fw.write("\n");
+		fw.write("Learnwell Technocraft");
+		char[] ch={'a','b','c'};
+		fw.write(ch);
+		fw.write("\n");
+		fw.flush();
+		fw.close();
+	}
+}
+
+
+
+
+FileReader:
+By using FileReader object we can read character data from the file.
+
+Constructors:
+FileReader fr=new FileReader(String name);
+FileReader fr=new FileReader (File f);
+
+Methods:
+1. int read();
+It attempts to read next character from the file and return its Unicode value. If
+the next character is not available then we will get -1.
+
+int i=fr.read();
+System.out.println((char)i);
+
+As this method returns unicodevalue , while printing we have to perform type casting.
+
+4. int read(char[] ch);
+It attempts to read enough characters from the file into char[] array and returns the no of characters copied from the file into char[] array.
+
+5. File f=new File("abc.txt");
+
+6. Char[] ch=new Char[(int)f.length()];
+
+7. void close();
+
+classFileReaderDemo
+{
+	public static void main(String[] args)throws IOException
+	{
+		FileReader fr=new FileReader("cricket.txt");
+		int i=fr.read(); //more amount of data
+		while(i!=-1)
+		{
+			System.out.print((char)i);
+			i=fr.read();
+		}
+	}
+}

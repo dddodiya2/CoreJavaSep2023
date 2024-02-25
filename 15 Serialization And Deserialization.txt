@@ -1,0 +1,162 @@
+Serialization is a mechanism of converting the state of an object into a byte stream.
+Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory.
+This mechanism is used to persist the object.
+
+
+Serialization: (1.1 v)
+1. The process of saving (or) writing state of an object to a file is called serialization
+2. but strictly speaking it is the process of converting an object from java supported
+form to either network supported form (or) file supported form.
+3. By using FileOutputStream and ObjectOutputStream classes we can achieve serialization process.
+
+
+De-Serialization:
+1. The process of reading state of an object from a file is called DeSerialization
+2. but strictly speaking it is the process of converting an object from file supported
+form (or) network supported form to java supported form.
+3. By using FileInputStream and ObjectInputStream classes we can achieve
+DeSerialization.
+
+
+
+Example 1:
+import java.io.*;
+class Dog implements Serializable
+{
+	int i=10;
+	int j=20;
+}
+
+
+class SerializableDemo
+{
+	public static void main(String args[])throws Exception{
+		Dog d1=new Dog();
+		
+		System.out.println("Serialization started");
+		FileOutputStream fos=new FileOutputStream("abc.ser");
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		oos.writeObject(d1);
+		System.out.println("Serialization ended");
+		
+		
+		System.out.println("Deserialization started");
+		FileInputStream fis=new FileInputStream("abc.ser");
+		ObjectInputStream ois=new ObjectInputStream(fis);
+		Dog d2=(Dog)ois.readObject();
+		System.out.println("Deserialization ended");
+		System.out.println(d2.i+"................"+d2.j);
+	}
+}
+
+Output:
+Serialization started
+Serialization ended
+Deserialization started
+Deserialization ended
+10................20
+
+
+
+
+1. We can perform Serialization only for Serilizable objects.
+2. An object is said to be Serilizable if and only if the corresponding class
+implements Serializable interface.
+3. Serializable interface present in java.io package and does not contain any
+methods. It is marker interface. The required ability will be provided
+automatically by JVM.
+4. We can add any no. Of objects to the file and we can read all those objects from
+the file but in which order we wrote objects in the same order only the objects
+will come back. That is order is important.
+5. If we are trying to serialize a non-serializable object then we will get
+RuntimeException saying "NotSerializableException".
+
+
+
+
+Transient keyword:
+1. transient is the modifier applicable only for variables.
+2. While performing serialization if we don't want to save the value of a particular
+variable to meet security constraint  such type of variable , then we should declare
+that variable with "transient" keyword.
+3. At the time of serialization JVM ignores the original value of transient variable
+and save default value to the file .
+4. That is transient means "not to serialize".
+
+
+
+Static Vs Transient :
+1. static variable is not part of object state hence they won't participate in
+serialization because of this declaring a static variable as transient there is no
+use.
+
+
+Transient Vs Final:
+1. final variables will be participated into serialization directly by their values.
+Hence declaring a final variable as transient there is no use.
+//the compiler assign the value to final variable
+
+
+
+
+
+serialVersionUID :
+To perform Serialization & Deserialization internally JVM will use a unique identifier ,
+which is nothing but serialVersionUID .
+At the time of serialization JVM will save serialVersionUID with object.
+
+At the time of Deserialization JVM will compare serialVersionUID and if it is matched
+then only object will be Deserialized otherwise we will get RuntimeException saying
+"InvalidClassException".
+
+
+The process in depending on default serialVersionUIDare :
+1. After Serializing object if we change the .class file then we can't perform
+deserialization because of mismatch in serialVersionUID of local class and
+serialized object in this case at the time of Deserialization we will get
+RuntimeException saying in "InvalidClassException".
+2. Both sender and receiver should use the same version of JVM if there any
+incompatability in JVM versions then receive anable to deserializable because of
+different serialVersionUID , in this case receiver will get RuntimeException
+saying "InvalidClassException" .
+3. To generate serialVersionUID internally JVM will use complexAlgorithm which
+may create performence problems.
+We can solve above problems by configuring our own serialVersionUID .
+we can configure serialVersionUID as follows :
+private static final long serialVersionUID = 1L;
+
+
+
+
+
+
+class Dog implements Serializable {
+private static final long serialVersionUID=1L;
+int i=10;
+int j=20;
+}
+class Sender {
+public static void main(String[] args) throws Exception {
+Dog d1=new Dog();
+FileOutputStreamfos=new FileOutputStream("abc.ser");
+ObjectOutputStreamoos= new ObjectOutputStream(fos);
+oos.writeObject(d1);
+}
+}
+
+
+class Receiver {
+public static void main(String[] args)throws Exception {
+FileInputStreamfis=new FileInputStream("abc.ser");
+ObjectInputStreamois=new ObjectInputStream(fis);
+Dog d2=(Dog) ois.readObject();
+System.out.println(d2.i+"-----"+d2.j);
+}
+}
+
+
+In the above program after serialization even though if we perform any change to
+Dog.class file , we can deserialize object.
+We if configure our own serialVersionUID both sender and receiver not required to
+maintain the same JVM versions.
+Note : some IDE's generate explicit serialVersionUID.
