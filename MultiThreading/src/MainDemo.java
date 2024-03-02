@@ -2,7 +2,8 @@
 public class MainDemo {
 
 	public static void main(String[] args) {
-		
+	
+
 		//MyRunnable r = new MyRunnable();
 		
 		//Thread t1 = new Thread(r);
@@ -49,6 +50,8 @@ public class MainDemo {
 		for(int i=0; i<20; i++) {
 			System.out.println(Thread.currentThread().getName() + " : " + i);
 		}
+		
+
 		
 	}
 

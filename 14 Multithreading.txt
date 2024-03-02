@@ -504,7 +504,7 @@ Synchronization :-
 
 1. synchronized is the keyword applicable for methods and blocks but not for classes and variables.
 2. If a method or block declared as the synchronized then at a time only one Thread is allow to execute that method or block on the given object.
-3. The main advantage of synchronized keyword is we can resolve date inconsistency problems.
+3. The main advantage of synchronized keyword is we can resolve data inconsistency problems.
 4. But the main disadvantage of synchronized keyword is it increases waiting time of the Thread and effects performance of the system.
 5. Hence if there is no specific requirement then never recommended to use synchronized keyword.
 6. Internally synchronization concept is implemented by using lock concept.
@@ -558,7 +558,7 @@ class SynchronizedDemo
 		Display d1=new Display();
 		
 		MyThread t1=new MyThread(d1,"dhoni");
-		MyThread t2=new MyThread(d1,"yuvaraj");
+		MyThread t2=new MyThread(d1,"yuvraj");
 		
 		t1.start();
 		t2.start();
@@ -810,12 +810,11 @@ The Threads which are executing in the background are called daemon Threads.
 The main objective of daemon Threads is to provide support for non-daemon Threads
 like main Thread.
 
-
 Example:
 Garbage collector
-
 When ever the program runs with low memory the JVM will execute Garbage Collector
 to provide free memory. So that the main Thread can continue it's execution.
+
  We can check whether the Thread is daemon or not by using isDaemon() method
 of Thread class.
 public final boolean isDaemon();
